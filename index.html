@@ -81,6 +81,15 @@
             margin-bottom: 1rem; /* mb-4 */
             display: inline-block; /* Needed for margin */
         }
+        /* Icon styling for DC features/services */
+        .dc-feature-icon {
+            margin-right: 0.5rem; /* mr-2 */
+            width: 1.25rem; /* w-5 */
+            text-align: center;
+        }
+        .fa-check-square { color: #22c55e; /* green-500 */ }
+        .fa-square { color: #9ca3af; /* gray-400 */ }
+
 
         /* Set height for the map container */
         #map {
@@ -219,6 +228,64 @@
                          <div id="map"></div> <p id="map-message" class="text-center text-xs text-gray-500 mt-2">
                             Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors
                          </p>
+
+                         <div class="mt-12 bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 md:p-8">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Jersey Data Center (TEB-2)</h3>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b pb-2">Background</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li><strong>Location:</strong> Secaucus, New Jersey</li>
+                                        <li><strong>Built:</strong> 1999</li>
+                                        <li><strong>Size:</strong> 6000 SF</li>
+                                        <li><strong>Building:</strong> 2 Floors</li>
+                                        <li><strong>Parking:</strong> Free On-site</li>
+                                        <li><strong>Proximity:</strong> ~10 minutes from NYC</li>
+                                    </ul>
+
+                                    <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Details</h4>
+                                     <ul class="space-y-2 text-sm text-gray-600">
+                                        <li><strong>Class:</strong> Tier 2 Facility</li>
+                                        <li><strong>Flooring:</strong> Raised Floors</li>
+                                        <li><strong>Power Capacity:</strong> 4000AMP</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b pb-2">Features</h4>
+                                    <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> 24/7 Access</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> 24/7 Staff On-site</li>
+                                        <li class="flex items-center"><i class="far fa-square dc-feature-icon"></i> 24/7 Security Guard(s)</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Remote Hands</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Fire Suppression</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Video Surveillance</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Generator</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> UPS</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Alarm System</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Air Conditioning</li>
+                                    </ul>
+
+                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Services</h4>
+                                     <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Suite/Room Rental</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Cage Rental</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Footprint Rental</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Rack Rental</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Server Colocation</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Dedicated Servers</li>
+                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Virtual Servers</li>
+                                        <li class="flex items-center"><i class="far fa-square dc-feature-icon"></i> Office Space</li>
+                                     </ul>
+
+                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Connectivity</h4>
+                                     <p class="text-sm text-gray-600">
+                                        8Gbps redundant connectivity (100/1000 Mbps delivery). Carriers include Level3, XO, Abovenet, Sprint, Tiscali. Free cross-connects available.
+                                     </p>
+                                </div>
+                            </div>
+                         </div>
                     </div>
                 </div>
             </section>
@@ -344,7 +411,7 @@
 
             // Approx coords for Teterboro, NJ
             const njLocation = L.latLng(40.85, -74.06);
-            const serverName = "New Jersey (TEB-2)";
+            const serverName = "New Jersey (TEB-2)"; // Keep using this variable name internally
 
             // Initialize map centered on NJ initially
             map = L.map('map').setView(njLocation, 7); // Start with wider view
@@ -355,15 +422,16 @@
                 attribution: '' // Attribution is handled in the dedicated p tag now
             }).addTo(map);
 
-            // Add marker for NJ server location (always shown)
+            // Add marker for NJ location (always shown)
             const serverMarker = L.marker(njLocation).addTo(map)
-                .bindPopup(`<b>Server: ${serverName}</b>`)
+                .bindPopup(`<b>DataCenter: ${serverName}</b>`) // Changed "Server:" to "DataCenter:"
                 .openPopup(); // Open server popup initially
 
             // --- Try to get user's location via IP (Two-Step Process) ---
             let userIP = null;
             try {
                 // Step 1: Get user's public IP address
+                console.log("[Map Debug] Fetching IP address from ipify..."); // Added log
                 const ipResponse = await fetch('https://api.ipify.org?format=json');
                 if (!ipResponse.ok) {
                     throw new Error(`HTTP error fetching IP! status: ${ipResponse.status}`);
@@ -373,39 +441,43 @@
                      throw new Error('Could not parse IP address from ipify response.');
                 }
                 userIP = ipData.ip;
+                console.log(`[Map Debug] Detected IP: ${userIP}`); // Added log
 
                 // Step 2: Get location data using the obtained IP
-                const geoResponse = await fetch(`https://reallyfreegeoip.org/json/${userIP}`);
+                const geoApiUrl = `https://reallyfreegeoip.org/json/${userIP}`;
+                console.log(`[Map Debug] Fetching geo data from: ${geoApiUrl}`); // Added log
+                const geoResponse = await fetch(geoApiUrl);
                 if (!geoResponse.ok) {
-                     // Handle potential non-JSON error responses from reallyfreegeoip.org
                      let errorText = `HTTP error fetching geo data! status: ${geoResponse.status}`;
                      try {
                          const text = await geoResponse.text();
                          errorText += ` - ${text}`;
-                     } catch (e) {} // Ignore error reading text body
+                     } catch (e) {}
                     throw new Error(errorText);
                 }
                 const geoData = await geoResponse.json();
+                console.log("[Map Debug] Received geo data:", geoData); // Added log
 
                 // Check if the response contains lat/lon
                 if (geoData && geoData.latitude && geoData.longitude) {
+                    console.log("[Map Debug] Geo data seems valid. Adding user marker."); // Added log
                     // Successfully got IP location
                     const userLat = geoData.latitude;
                     const userLng = geoData.longitude;
                     const userLocation = L.latLng(userLat, userLng);
                     const city = geoData.city || 'Unknown City';
-                    const region = geoData.region_name || 'Unknown Region'; // Assuming field name
+                    const region = geoData.region_name || 'Unknown Region';
 
-                    // Calculate distance (in meters)
+                    // Calculate distance
                     const distanceMeters = userLocation.distanceTo(njLocation);
                     const distanceKm = (distanceMeters / 1000).toFixed(0);
                     const distanceMiles = (distanceKm * 0.621371).toFixed(0);
 
-                    // Add marker for user's IP location
+                    // Add marker
                     const userMarker = L.marker(userLocation).addTo(map)
                         .bindPopup(`<b>Approx. Location (IP):</b> ${city}, ${region}<br>Approx. ${distanceKm} km / ${distanceMiles} miles from ${serverName}.`);
 
-                    // Adjust map view to fit both markers
+                    // Adjust map view
                     const bounds = L.latLngBounds([njLocation, userLocation]);
                     map.fitBounds(bounds.pad(0.1));
 
@@ -415,20 +487,24 @@
                      }
 
                 } else {
-                    // API response might be ok, but missing lat/lon data
-                    throw new Error('Failed to get location data from reallyfreegeoip response.');
+                    // API response ok, but missing lat/lon data
+                    console.error("[Map Debug] Geo data received, but missing latitude/longitude fields."); // Added log
+                    throw new Error('Failed to get required location data (lat/lon) from reallyfreegeoip response.');
                 }
 
             } catch (error) {
                 // Error fetching IP or location, or processing response
-                console.error("IP Geolocation error (two-step):", error);
+                console.error("[Map Debug] IP Geolocation error (two-step):", error); // Ensure full error is logged
                 let message = "Could not determine your location via IP address.";
-                // Provide slightly more specific error if IP fetch failed vs geo fetch
                 if (!userIP && error.message.includes('fetching IP')) {
                     message = "Could not determine your public IP address.";
                 } else if (userIP) {
-                     message = `Could not get location for IP: ${userIP}.`;
+                     // Use the more detailed error if available
+                     message = `Could not get location for IP: ${userIP}. Error: ${error.message}`;
+                } else {
+                     message = `Could not determine your location via IP address. Error: ${error.message}`;
                 }
+
 
                  if(mapMessageElement) {
                    mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
