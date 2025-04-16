@@ -24,10 +24,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
     <style>
         /* Set base font */
         body {
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Enable smooth scrolling */
         }
 
         /* Styling for the main plan block */
@@ -63,7 +69,7 @@
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
         }
 
-        /* Utility class to hide sections */
+        /* Utility class to hide sections (used for full blog post view) */
         .hidden-section {
             display: none;
         }
@@ -74,6 +80,30 @@
             line-height: 1; /* Prevent extra space */
             margin-bottom: 1rem; /* mb-4 */
             display: inline-block; /* Needed for margin */
+        }
+
+        /* Set height for the map container */
+        #map {
+             height: 400px;
+             border-radius: 0.5rem; /* rounded-lg */
+             border: 1px solid #e5e7eb; /* gray-200 */
+             background-color: #f9fafb; /* gray-50 if needed */
+        }
+        /* Style Leaflet popups slightly */
+        .leaflet-popup-content-wrapper {
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .leaflet-popup-content {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem; /* text-sm */
+        }
+        /* Ensure map tiles are visible */
+        .leaflet-tile-container img {
+            max-width: none !important;
+        }
+        /* Style for map error message */
+        #map-message {
+            min-height: 1.25rem; /* Ensure space even when empty */
         }
     </style>
 </head>
@@ -88,7 +118,7 @@
             <div class="space-x-4 flex items-center">
                 <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a>
                 <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a>
-                <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="#locations" class="nav-link text-gray-600 hover:text-blue-600">Locations</a> <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a>
                 <a href="#status" class="nav-link text-gray-600 hover:text-blue-600">Status</a>
                 <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer"
                     class="text-gray-600 hover:text-blue-600" title="Join our Discord">
@@ -103,120 +133,131 @@
     </header>
 
     <main id="main-content">
-        <section id="hero" class="page-section bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6">
-            <div class="container mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Uncompromising Performance, Cutting-Edge Technology</h1>
-                <p class="text-lg md:text-xl mb-8 text-blue-100">Robust VirtFusion-powered VPS hosting with
-                    enterprise-level reliability.</p>
-                <a href="#plan-details"
-                    class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-md hover:bg-gray-100 transition duration-300">View
-                    Offering</a>
-            </div>
-        </section>
-
-        <section id="plan-details" class="page-section py-16 bg-white px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-6">Our Core Offering</h2>
-                <p class="text-center text-gray-600 mb-12">Expansive storage solutions built for versatility and speed.
-                </p>
-                <div class="max-w-4xl mx-auto main-plan-block">
-                    <div class="md:flex md:items-center md:justify-between mb-6">
-                        <h3 class="text-2xl font-semibold mb-2 md:mb-0">StorageKVM100 Plan</h3>
-                        <div class="text-3xl font-bold text-blue-600">Starting at $3.99 <span
-                                class="text-lg font-normal text-gray-500">USD/month</span></div>
-                    </div>
-                    <p class="text-gray-500 mb-6">Dive into expansive storage solutions built for versatility and speed.
-                        Optimized for quick responsiveness and dynamic task management.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                        <ul class="space-y-3 text-gray-700">
-                            <li>✔️ <strong>1 vCPU Core</strong></li>
-                            <li>✔️ <strong>1024 MiB RAM</strong></li>
-                            <li>✔️ <strong>Choice of Swap:</strong> None - 8GB</li>
-                            <li>✔️ <strong>128 GiB Primary Storage</strong> <span
-                                    class="text-sm text-gray-500">(Expandable - $0.99/month per 128GB)</span></li>
-                        </ul>
-                        <ul class="space-y-3 text-gray-700">
-                            <li>✔️ <strong>500 GiB Monthly Bandwidth</strong> <span class="text-sm text-gray-500">(1Gbps
-                                    in/out)</span></li>
-                            <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
-                            <li>✔️ <strong>1 /80 IPv6 Public Subnet</strong></li>
-                            <li>✔️ <strong>20 Allocated Ports</strong></li>
-                        </ul>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-6">Swap space acts as backup memory, preventing crashes when your
-                        system runs out of physical memory. Keep in mind that the amount of swap space you choose will
-                        be reserved on your storage disk.</p>
-                    <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
-                        class="block w-full md:w-auto md:inline-block text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
-                        Details & Order on SkyVPS360</a>
+        <div id="main-page-sections">
+            <section id="hero" class="page-section bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6">
+                <div class="container mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Uncompromising Performance, Cutting-Edge Technology</h1>
+                    <p class="text-lg md:text-xl mb-8 text-blue-100">Robust VirtFusion-powered VPS hosting with
+                        enterprise-level reliability.</p>
+                    <a href="#plan-details"
+                        class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-md hover:bg-gray-100 transition duration-300">View
+                        Offering</a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="features" class="page-section py-16 bg-gray-100 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Why Choose SkyVPS360?</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                         <i class="fa-solid fa-gauge-high feature-icon text-blue-600"></i>
-                        <h3 class="text-xl font-semibold mb-2">KVM Performance</h3>
-                        <p class="text-gray-600">Leveraging powerful KVM virtualization and Network SATA for superior speed and responsiveness.</p>
+            <section id="plan-details" class="page-section py-16 bg-white px-6">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-6">Our Core Offering</h2>
+                    <p class="text-center text-gray-600 mb-12">Expansive storage solutions built for versatility and speed.
+                    </p>
+                    <div class="max-w-4xl mx-auto main-plan-block">
+                        <div class="md:flex md:items-center md:justify-between mb-6">
+                            <h3 class="text-2xl font-semibold mb-2 md:mb-0">StorageKVM100 Plan</h3>
+                            <div class="text-3xl font-bold text-blue-600">Starting at $3.99 <span
+                                    class="text-lg font-normal text-gray-500">USD/month</span></div>
+                        </div>
+                        <p class="text-gray-500 mb-6">Dive into expansive storage solutions built for versatility and speed.
+                            Optimized for quick responsiveness and dynamic task management.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                            <ul class="space-y-3 text-gray-700">
+                                <li>✔️ <strong>1 vCPU Core</strong></li>
+                                <li>✔️ <strong>1024 MiB RAM</strong></li>
+                                <li>✔️ <strong>Choice of Swap:</strong> None - 8GB</li>
+                                <li>✔️ <strong>128 GiB Primary Storage</strong> <span
+                                        class="text-sm text-gray-500">(Expandable - $0.99/month per 128GB)</span></li>
+                            </ul>
+                            <ul class="space-y-3 text-gray-700">
+                                <li>✔️ <strong>500 GiB Monthly Bandwidth</strong> <span class="text-sm text-gray-500">(1Gbps
+                                        in/out)</span></li>
+                                <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
+                                <li>✔️ <strong>1 /80 IPv6 Public Subnet</strong></li>
+                                <li>✔️ <strong>20 Allocated Ports</strong></li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-6">Swap space acts as backup memory, preventing crashes when your
+                            system runs out of physical memory. Keep in mind that the amount of swap space you choose will
+                            be reserved on your storage disk.</p>
+                        <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
+                            class="block w-full md:w-auto md:inline-block text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
+                            Details & Order on SkyVPS360</a>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                         <i class="fa-solid fa-server feature-icon text-blue-600"></i>
-                        <h3 class="text-xl font-semibold mb-2">VirtFusion Control</h3>
-                        <p class="text-gray-600">Manage your VPS effortlessly with the modern VirtFusion panel: boot, reboot, reinstall, console access, and more.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                         <i class="fa-solid fa-network-wired feature-icon text-blue-600"></i>
-                        <h3 class="text-xl font-semibold mb-2">Flexible Connectivity</h3>
-                        <p class="text-gray-600">Get connected with NAT IPv4 (20 ports included) and a dedicated /80 IPv6 subnet for future-proofing.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                         <i class="fa-solid fa-compact-disc feature-icon text-blue-600"></i>
-                        <h3 class="text-xl font-semibold mb-2">Easy OS Deployment</h3>
-                        <p class="text-gray-600">Quickly deploy your preferred operating system using a wide range of templates available via VirtFusion.</p>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="blog" class="page-section py-16 bg-white px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Latest News & Updates</h2>
-                <div id="blog-posts-container" class="max-w-4xl mx-auto">
-                    <p class="text-center text-gray-500">Loading posts...</p>
+            <section id="features" class="page-section py-16 bg-gray-100 px-6">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">Why Choose SkyVPS360?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-gauge-high feature-icon text-blue-600"></i>
+                            <h3 class="text-xl font-semibold mb-2">KVM Performance</h3>
+                            <p class="text-gray-600">Leveraging powerful KVM virtualization and Network SATA for superior speed and responsiveness.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-server feature-icon text-blue-600"></i>
+                            <h3 class="text-xl font-semibold mb-2">VirtFusion Control</h3>
+                            <p class="text-gray-600">Manage your VPS effortlessly with the modern VirtFusion panel: boot, reboot, reinstall, console access, and more.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-network-wired feature-icon text-blue-600"></i>
+                            <h3 class="text-xl font-semibold mb-2">Flexible Connectivity</h3>
+                            <p class="text-gray-600">Get connected with NAT IPv4 (20 ports included) and a dedicated /80 IPv6 subnet for future-proofing.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-compact-disc feature-icon text-blue-600"></i>
+                            <h3 class="text-xl font-semibold mb-2">Easy OS Deployment</h3>
+                            <p class="text-gray-600">Quickly deploy your preferred operating system using a wide range of templates available via VirtFusion.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="full-post-view" class="page-section hidden-section py-16 bg-white px-6">
+            <section id="locations" class="page-section py-16 bg-white px-6">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">Our Network Presence</h2>
+                    <div class="max-w-4xl mx-auto">
+                         <div id="map"></div> <p id="map-message" class="text-center text-xs text-gray-500 mt-2">
+                            Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors
+                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="page-section py-16 bg-gray-100 px-6">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">Latest News & Updates</h2>
+                    <div id="blog-posts-container" class="max-w-4xl mx-auto">
+                        <p class="text-center text-gray-500">Loading posts...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="status" class="page-section py-16 bg-white px-6">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">System Status</h2>
+                    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-4">
+                            <span class="font-semibold text-gray-700">Control Panel</span>
+                            <span id="status-vdc" class="font-semibold text-gray-700">
+                                <span class="status-dot status-checking"></span>Checking...
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-gray-700">Billing Panel</span>
+                            <span id="status-billing" class="font-semibold text-gray-700">
+                                <span class="status-dot status-checking"></span>Checking...
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-4">Status checks are performed from your browser. Status
+                            indicates web server reachability (HTTPS).</p>
+                    </div>
+                </div>
+            </section>
+        </div> <section id="full-post-view" class="page-section hidden-section py-16 bg-white px-6">
             <div class="container mx-auto max-w-3xl">
                  </div>
         </section>
 
-        <section id="status" class="page-section py-16 bg-gray-100 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">System Status</h2>
-                <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-4">
-                        <span class="font-semibold text-gray-700">Control Panel</span>
-                        <span id="status-vdc" class="font-semibold text-gray-700">
-                            <span class="status-dot status-checking"></span>Checking...
-                        </span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="font-semibold text-gray-700">Billing Panel</span>
-                        <span id="status-billing" class="font-semibold text-gray-700">
-                            <span class="status-dot status-checking"></span>Checking...
-                        </span>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-4">Status checks are performed from your browser. Status
-                        indicates web server reachability (HTTPS).</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-gray-800 text-gray-300 py-8 px-6">
@@ -227,187 +268,212 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
     <script>
         // --- Status Check Function ---
-        /**
-         * Checks the status of a given URL and updates the corresponding element.
-         * @param {string} url - The URL to check (using HEAD request).
-         * @param {string} elementId - The ID of the element to update with status.
-         */
         async function checkStatus(url, elementId) {
+            // ... (status check code remains the same)
             const statusElement = document.getElementById(elementId);
-            if (!statusElement) return; // Exit if element not found
-
-            // Set initial state to "Checking..."
+            if (!statusElement) return;
             statusElement.innerHTML = '<span class="status-dot status-checking"></span>Checking...';
-
             try {
-                // Use AbortController for timeout
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
-
-                // Perform a HEAD request (no-cors mode for cross-origin checks)
-                // 'no-store' cache prevents using cached results
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
                 const response = await fetch(url, { method: 'HEAD', mode: 'no-cors', signal: controller.signal, cache: 'no-store' });
-
-                clearTimeout(timeoutId); // Clear the timeout if fetch completes
-
-                // Even in 'no-cors' mode, a successful network request implies reachability
+                clearTimeout(timeoutId);
                 statusElement.innerHTML = '<span class="status-dot status-online"></span>Online';
             } catch (error) {
-                // Log error for debugging
                 console.error(`Error checking ${url}:`, error);
-                // Update status to "Offline" on error (including timeout)
                 statusElement.innerHTML = '<span class="status-dot status-offline"></span>Offline';
             }
         }
 
         // --- Blog Post Data ---
-        // Placeholder data for blog posts
-        const blogPosts = [
+        const blogPosts = [ /* ... blog post data ... */
             {
                 title: "Welcome to the New SkyVPS360 Frontend!",
-                date: "April 16, 2025", // Use current date or relevant date
+                date: "April 16, 2025",
                 snippet: "We're excited to launch our new frontend, making it easier than ever to explore our VPS offerings...",
-                slug: "welcome-new-frontend", // Unique identifier for the post URL
-                // Full content of the blog post (HTML allowed)
-                content: `
-                    <p>We are thrilled to announce the launch of the brand new SkyVPS360 frontend! This project aimed to create a cleaner, faster, and more user-friendly experience for browsing our services.</p>
-                    <p class="mt-4">Built with modern web technologies, this new interface should provide a smoother experience across all devices. We've focused on presenting our core StorageKVM plan clearly and making it easy to access your client area or register for new services.</p>
-                    <p class="mt-4">Explore the different sections using the navigation bar above. We welcome any feedback you might have!</p>
-                `
+                slug: "welcome-new-frontend",
+                content: `<p>We are thrilled to announce the launch of the brand new SkyVPS360 frontend! This project aimed to create a cleaner, faster, and more user-friendly experience for browsing our services.</p><p class="mt-4">Built with modern web technologies, this new interface should provide a smoother experience across all devices. We've focused on presenting our core StorageKVM plan clearly and making it easy to access your client area or register for new services.</p><p class="mt-4">Explore the different sections using the navigation bar above. We welcome any feedback you might have!</p>`
             }
-            // Add more blog post objects here if needed
         ];
 
         // --- Blog Post Rendering Functions ---
-        /**
-         * Renders the list of blog post snippets.
-         * @param {Array} posts - An array of blog post objects.
-         */
-        function renderBlogPostsList(posts) {
+        function renderBlogPostsList(posts) { /* ... remains the same ... */
             const container = document.getElementById('blog-posts-container');
-            if (!container) return; // Exit if container not found
-
-            // Handle case with no posts
+            if (!container) return;
             if (!posts || posts.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500">No blog posts available.</p>';
                 return;
             }
-
-            // Generate HTML for each post snippet
             let postsHTML = '';
             posts.forEach(post => {
-                postsHTML += `
-                    <article class="blog-post">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
-                            <a href="#blog/${post.slug || '#'}" >${post.title}</a>
-                        </h3>
-                        <p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p>
-                        <p class="text-gray-700 mb-4">${post.snippet}</p>
-                        <a href="#blog/${post.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium">Read More &rarr;</a>
-                    </article>
-                `;
+                postsHTML += `<article class="blog-post"><h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700"><a href="#blog/${post.slug || '#'}">${post.title}</a></h3><p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p><p class="text-gray-700 mb-4">${post.snippet}</p><a href="#blog/${post.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium">Read More &rarr;</a></article>`;
             });
-            container.innerHTML = postsHTML; // Update the container
+            container.innerHTML = postsHTML;
         }
-
-        /**
-         * Renders the full content of a single blog post.
-         * @param {object} post - The blog post object to render.
-         */
-        function renderFullPost(post) {
+        function renderFullPost(post) { /* ... remains the same ... */
             const container = document.getElementById('full-post-view');
-            if (!container) return; // Exit if container not found
-
-            // Handle case where post is not found
+            if (!container) return;
             if (!post) {
                 container.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
                 return;
             }
-
-            // Generate HTML for the full post view
-            container.innerHTML = `
-                <article>
-                    <h1 class="text-3xl font-bold mb-3">${post.title}</h1>
-                    <p class="text-sm text-gray-500 mb-6">Published on ${post.date}</p>
-                    <div class="prose max-w-none text-gray-800">
-                        ${post.content}
-                    </div>
-                    <a href="#blog" class="inline-block mt-8 text-blue-600 hover:text-blue-700">&larr; Back to Blog List</a>
-                </article>
-            `;
+            container.innerHTML = `<article><h1 class="text-3xl font-bold mb-3">${post.title}</h1><p class="text-sm text-gray-500 mb-6">Published on ${post.date}</p><div class="prose max-w-none text-gray-800">${post.content}</div><a href="#" class="inline-block mt-8 text-blue-600 hover:text-blue-700">&larr; Back to Home</a></article>`;
+            const backLink = container.querySelector('a[href="#"]');
+            if(backLink) {
+                backLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.hash = '#hero';
+                    handleRouteChange();
+                });
+            }
         }
 
-        // --- Simple Hash-Based Router ---
-        const pageSections = document.querySelectorAll('.page-section'); // Get all main sections
-        const fullPostViewSection = document.getElementById('full-post-view'); // Get the dedicated post view section
+        // --- Map Initialization & Geolocation ---
+        let map = null; // Make map variable accessible
+        const mapMessageElement = document.getElementById('map-message');
 
-        /**
-         * Handles routing based on the URL hash. Shows/hides sections accordingly.
-         */
+        function initializeMap() {
+            const mapElement = document.getElementById('map');
+            if (!mapElement || map) return; // Don't run if map element isn't present or map already initialized
+
+            // Approx coords for Teterboro, NJ
+            const njLocation = L.latLng(40.85, -74.06);
+            const serverName = "New Jersey (TEB-2)";
+
+            // Initialize map centered on NJ initially
+            map = L.map('map').setView(njLocation, 7);
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '' // Attribution is handled in the dedicated p tag now
+            }).addTo(map);
+
+            // Add marker for NJ server location (always shown)
+            const serverMarker = L.marker(njLocation).addTo(map)
+                .bindPopup(`<b>Server: ${serverName}</b>`);
+
+            // --- Try to get user's location ---
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // Success: User allowed location access
+                        const userLat = position.coords.latitude;
+                        const userLng = position.coords.longitude;
+                        const userLocation = L.latLng(userLat, userLng);
+
+                        // Calculate distance (in meters)
+                        const distanceMeters = userLocation.distanceTo(njLocation);
+                        const distanceKm = (distanceMeters / 1000).toFixed(0);
+                        const distanceMiles = (distanceKm * 0.621371).toFixed(0);
+
+                        // Add marker for user's location
+                        const userMarker = L.marker(userLocation).addTo(map)
+                            .bindPopup(`<b>Your Approx. Location</b><br>Approx. ${distanceKm} km / ${distanceMiles} miles from ${serverName}.`);
+
+                        // Adjust map view to fit both markers
+                        const bounds = L.latLngBounds([njLocation, userLocation]);
+                        map.fitBounds(bounds.pad(0.1)); // pad(0.1) adds some padding
+
+                        // Optional: Open user popup
+                        // userMarker.openPopup();
+
+                        if(mapMessageElement) {
+                           mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors`; // Reset message
+                        }
+
+                    },
+                    (error) => {
+                        // Error: User denied or location unavailable
+                        console.error("Geolocation error:", error);
+                        let message = "Could not determine your location.";
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                message = "Location access denied. Cannot show your location.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                message = "Location information is unavailable.";
+                                break;
+                            case error.TIMEOUT:
+                                message = "The request to get user location timed out.";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                message = "An unknown error occurred while getting location.";
+                                break;
+                        }
+                         if(mapMessageElement) {
+                           mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
+                         }
+                         // Keep map centered on server
+                         map.setView(njLocation, 7);
+                         serverMarker.openPopup(); // Open server popup if user location fails
+                    }
+                );
+            } else {
+                // Geolocation not supported by browser
+                console.error("Geolocation is not supported by this browser.");
+                if(mapMessageElement) {
+                    mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">Geolocation not supported by your browser.</span>`;
+                }
+                serverMarker.openPopup();
+            }
+        }
+
+
+        // --- Updated Router (Scroll Navigation) ---
+        const mainPageSectionsDiv = document.getElementById('main-page-sections');
+        const fullPostViewSection = document.getElementById('full-post-view');
+
         function handleRouteChange() {
-            const hash = window.location.hash || '#hero'; // Default to #hero if no hash
-            const blogPostMatch = hash.match(/^#blog\/(.+)/); // Check if hash matches blog post pattern
-
-            // Hide all page sections initially
-            pageSections.forEach(section => section.classList.add('hidden-section'));
+            const hash = window.location.hash || '#hero';
+            const blogPostMatch = hash.match(/^#blog\/(.+)/);
 
             if (blogPostMatch) {
                 // --- Show Single Blog Post ---
-                const slug = blogPostMatch[1]; // Extract slug from hash
-                const post = blogPosts.find(p => p.slug === slug); // Find the matching post
-                renderFullPost(post); // Render the full post content
-                fullPostViewSection.classList.remove('hidden-section'); // Show the post view section
-            } else {
-                // --- Show Standard Page Sections ---
-                const targetSectionId = hash.substring(1); // Get section ID from hash (remove #)
+                const slug = blogPostMatch[1];
+                const post = blogPosts.find(p => p.slug === slug);
+                mainPageSectionsDiv?.classList.add('hidden-section');
+                fullPostViewSection?.classList.remove('hidden-section');
+                renderFullPost(post);
+                window.scrollTo(0, 0);
 
-                // Default view (show multiple sections)
-                if (targetSectionId === '' || targetSectionId === 'hero') {
-                    document.getElementById('hero')?.classList.remove('hidden-section');
-                    document.getElementById('plan-details')?.classList.remove('hidden-section');
-                    document.getElementById('features')?.classList.remove('hidden-section');
-                    document.getElementById('blog')?.classList.remove('hidden-section');
-                    renderBlogPostsList(blogPosts); // Ensure blog list is rendered
-                    document.getElementById('status')?.classList.remove('hidden-section');
-                } else {
-                    // Show a specific section based on hash
-                    const targetSection = document.getElementById(targetSectionId);
-                    if (targetSection && targetSection.classList.contains('page-section')) {
-                        targetSection.classList.remove('hidden-section');
-                        // If navigating to the blog list section, render the list
-                        if (targetSectionId === 'blog') {
-                            renderBlogPostsList(blogPosts);
-                        }
+            } else {
+                // --- Show Main Page Sections & Handle Scrolling ---
+                mainPageSectionsDiv?.classList.remove('hidden-section');
+                fullPostViewSection?.classList.add('hidden-section');
+                renderBlogPostsList(blogPosts); // Render list if not already visible
+
+                if (hash && hash !== '#hero' && hash !== '#') {
+                    const targetSectionId = hash.substring(1);
+                    const targetElement = document.getElementById(targetSectionId);
+                    if (targetElement) {
+                         setTimeout(() => {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                         }, 0);
                     } else {
-                        // Fallback to default view if hash doesn't match a known section
-                        document.getElementById('hero')?.classList.remove('hidden-section');
-                        document.getElementById('plan-details')?.classList.remove('hidden-section');
-                        document.getElementById('features')?.classList.remove('hidden-section');
-                        document.getElementById('blog')?.classList.remove('hidden-section');
-                        renderBlogPostsList(blogPosts);
-                        document.getElementById('status')?.classList.remove('hidden-section');
+                        window.scrollTo(0, 0); // Scroll top if hash invalid
                     }
+                } else {
+                     window.scrollTo(0, 0); // Scroll top for # or #hero
                 }
             }
-            window.scrollTo(0, 0); // Scroll to top on route change
         }
+
 
         // --- Run functions when DOM is loaded ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Perform initial status checks
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-
-            // Render the initial blog post list
-            renderBlogPostsList(blogPosts);
-
-            // Handle the initial route based on the URL hash on page load
-            handleRouteChange();
-
-            // Listen for hash changes (user clicking internal links)
-            window.addEventListener('hashchange', handleRouteChange);
+            initializeMap(); // Initialize the map
+            renderBlogPostsList(blogPosts); // Render blog list
+            handleRouteChange(); // Handle initial route
+            window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
         });
     </script>
 
