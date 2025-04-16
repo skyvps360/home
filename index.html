@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyVPS360 - High Performance VPS Hosting</title>
+    <title>SkyVPS360 - Cheap Large Storage VPS Hosting</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
@@ -13,49 +13,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Set base font */
         body {
             font-family: 'Inter', sans-serif;
         }
 
+        /* Styling for the main plan block */
         .main-plan-block {
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            background-color: #f9fafb;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            background-color: #f9fafb; /* gray-50 */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
         }
 
+        /* Base styling for status dots */
         .status-dot {
             display: inline-block;
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 9999px;
-            margin-right: 0.5rem;
+            width: 0.75rem; /* w-3 */
+            height: 0.75rem; /* h-3 */
+            border-radius: 9999px; /* rounded-full */
+            margin-right: 0.5rem; /* mr-2 */
         }
 
-        .status-checking {
-            background-color: #f59e0b;
-        }
-        .status-online {
-            background-color: #22c55e;
-        }
-        .status-offline {
-            background-color: #ef4444;
-        }
+        /* Status dot colors */
+        .status-checking { background-color: #f59e0b; /* amber-500 */ }
+        .status-online { background-color: #22c55e; /* green-500 */ }
+        .status-offline { background-color: #ef4444; /* red-500 */ }
+
+        /* Styling for individual blog posts */
         .blog-post {
             background-color: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
         }
+
+        /* Utility class to hide sections */
         .hidden-section {
             display: none;
         }
-        /* Ensure Font Awesome icons have consistent size */
+
+        /* Ensure Font Awesome icons have consistent size and margin */
         .feature-icon {
-            font-size: 2.5rem; /* Adjust size as needed */
+            font-size: 2.5rem; /* text-4xl equivalent */
             line-height: 1; /* Prevent extra space */
             margin-bottom: 1rem; /* mb-4 */
             display: inline-block; /* Needed for margin */
@@ -67,7 +70,9 @@
 
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-600">SkyVPS360</a>
+            <a href="#" class="flex items-center text-2xl font-bold text-blue-600">
+                 <img src="images/logo.png" alt="SkyVPS360 Logo Placeholder" class="h-8 w-10 mr-2 rounded"> <span>SkyVPS360</span>
+            </a>
             <div class="space-x-4 flex items-center">
                 <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a>
                 <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a>
@@ -140,25 +145,21 @@
             <div class="container mx-auto">
                 <h2 class="text-3xl font-bold text-center mb-12">Why Choose SkyVPS360?</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                          <i class="fa-solid fa-gauge-high feature-icon text-blue-600"></i>
                         <h3 class="text-xl font-semibold mb-2">KVM Performance</h3>
                         <p class="text-gray-600">Leveraging powerful KVM virtualization and Network SATA for superior speed and responsiveness.</p>
                     </div>
-
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                          <i class="fa-solid fa-server feature-icon text-blue-600"></i>
                         <h3 class="text-xl font-semibold mb-2">VirtFusion Control</h3>
                         <p class="text-gray-600">Manage your VPS effortlessly with the modern VirtFusion panel: boot, reboot, reinstall, console access, and more.</p>
                     </div>
-
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                          <i class="fa-solid fa-network-wired feature-icon text-blue-600"></i>
                         <h3 class="text-xl font-semibold mb-2">Flexible Connectivity</h3>
                         <p class="text-gray-600">Get connected with NAT IPv4 (20 ports included) and a dedicated /80 IPv6 subnet for future-proofing.</p>
                     </div>
-
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                          <i class="fa-solid fa-compact-disc feature-icon text-blue-600"></i>
                         <h3 class="text-xl font-semibold mb-2">Easy OS Deployment</h3>
@@ -205,61 +206,84 @@
             </div>
         </section>
     </main>
+
     <footer class="bg-gray-800 text-gray-300 py-8 px-6">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 SkyVPS360. All Rights Reserved.</p>
             <div class="mt-4 space-x-4">
-<!-- 
-                // --- Removed Until These Pages Are Written ---
-                <a href="#" class="hover:text-white">Terms of Service</a> 
-                <a href="#" class="hover:text-white">Privacy Policy</a> 
--->
-            </div>
+                </div>
         </div>
     </footer>
 
     <script>
         // --- Status Check Function ---
+        /**
+         * Checks the status of a given URL and updates the corresponding element.
+         * @param {string} url - The URL to check (using HEAD request).
+         * @param {string} elementId - The ID of the element to update with status.
+         */
         async function checkStatus(url, elementId) {
             const statusElement = document.getElementById(elementId);
-            if (!statusElement) return;
-            const textSpan = statusElement;
-            textSpan.innerHTML = '<span class="status-dot status-checking"></span>Checking...';
+            if (!statusElement) return; // Exit if element not found
+
+            // Set initial state to "Checking..."
+            statusElement.innerHTML = '<span class="status-dot status-checking"></span>Checking...';
+
             try {
+                // Use AbortController for timeout
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000);
-                const response = await fetch(url, {method: 'HEAD', mode: 'no-cors', signal: controller.signal, cache: 'no-store'});
-                clearTimeout(timeoutId);
-                textSpan.innerHTML = '<span class="status-dot status-online"></span>Online';
+                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+
+                // Perform a HEAD request (no-cors mode for cross-origin checks)
+                // 'no-store' cache prevents using cached results
+                const response = await fetch(url, { method: 'HEAD', mode: 'no-cors', signal: controller.signal, cache: 'no-store' });
+
+                clearTimeout(timeoutId); // Clear the timeout if fetch completes
+
+                // Even in 'no-cors' mode, a successful network request implies reachability
+                statusElement.innerHTML = '<span class="status-dot status-online"></span>Online';
             } catch (error) {
+                // Log error for debugging
                 console.error(`Error checking ${url}:`, error);
-                textSpan.innerHTML = '<span class="status-dot status-offline"></span>Offline';
+                // Update status to "Offline" on error (including timeout)
+                statusElement.innerHTML = '<span class="status-dot status-offline"></span>Offline';
             }
         }
 
-        // --- Blog Post Data (Restored 3 placeholder posts) ---
+        // --- Blog Post Data ---
+        // Placeholder data for blog posts
         const blogPosts = [
             {
                 title: "Welcome to the New SkyVPS360 Frontend!",
-                date: "April 16, 2025",
+                date: "April 16, 2025", // Use current date or relevant date
                 snippet: "We're excited to launch our new frontend, making it easier than ever to explore our VPS offerings...",
-                slug: "welcome-new-frontend",
+                slug: "welcome-new-frontend", // Unique identifier for the post URL
+                // Full content of the blog post (HTML allowed)
                 content: `
                     <p>We are thrilled to announce the launch of the brand new SkyVPS360 frontend! This project aimed to create a cleaner, faster, and more user-friendly experience for browsing our services.</p>
                     <p class="mt-4">Built with modern web technologies, this new interface should provide a smoother experience across all devices. We've focused on presenting our core StorageKVM plan clearly and making it easy to access your client area or register for new services.</p>
                     <p class="mt-4">Explore the different sections using the navigation bar above. We welcome any feedback you might have!</p>
                 `
             }
+            // Add more blog post objects here if needed
         ];
 
         // --- Blog Post Rendering Functions ---
+        /**
+         * Renders the list of blog post snippets.
+         * @param {Array} posts - An array of blog post objects.
+         */
         function renderBlogPostsList(posts) {
             const container = document.getElementById('blog-posts-container');
-            if (!container) return;
+            if (!container) return; // Exit if container not found
+
+            // Handle case with no posts
             if (!posts || posts.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500">No blog posts available.</p>';
                 return;
             }
+
+            // Generate HTML for each post snippet
             let postsHTML = '';
             posts.forEach(post => {
                 postsHTML += `
@@ -273,15 +297,24 @@
                     </article>
                 `;
             });
-            container.innerHTML = postsHTML;
+            container.innerHTML = postsHTML; // Update the container
         }
 
+        /**
+         * Renders the full content of a single blog post.
+         * @param {object} post - The blog post object to render.
+         */
         function renderFullPost(post) {
             const container = document.getElementById('full-post-view');
-            if (!container || !post) {
-                if (container) container.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
+            if (!container) return; // Exit if container not found
+
+            // Handle case where post is not found
+            if (!post) {
+                container.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
                 return;
             }
+
+            // Generate HTML for the full post view
             container.innerHTML = `
                 <article>
                     <h1 class="text-3xl font-bold mb-3">${post.title}</h1>
@@ -295,58 +328,74 @@
         }
 
         // --- Simple Hash-Based Router ---
-        const pageSections = document.querySelectorAll('.page-section');
-        const fullPostView = document.getElementById('full-post-view');
+        const pageSections = document.querySelectorAll('.page-section'); // Get all main sections
+        const fullPostViewSection = document.getElementById('full-post-view'); // Get the dedicated post view section
 
+        /**
+         * Handles routing based on the URL hash. Shows/hides sections accordingly.
+         */
         function handleRouteChange() {
-            const hash = window.location.hash || '#hero';
-            const blogPostMatch = hash.match(/^#blog\/(.+)/);
+            const hash = window.location.hash || '#hero'; // Default to #hero if no hash
+            const blogPostMatch = hash.match(/^#blog\/(.+)/); // Check if hash matches blog post pattern
 
+            // Hide all page sections initially
             pageSections.forEach(section => section.classList.add('hidden-section'));
 
             if (blogPostMatch) {
-                const slug = blogPostMatch[1];
-                const post = blogPosts.find(p => p.slug === slug);
-                renderFullPost(post);
-                fullPostView.classList.remove('hidden-section');
+                // --- Show Single Blog Post ---
+                const slug = blogPostMatch[1]; // Extract slug from hash
+                const post = blogPosts.find(p => p.slug === slug); // Find the matching post
+                renderFullPost(post); // Render the full post content
+                fullPostViewSection.classList.remove('hidden-section'); // Show the post view section
             } else {
-                const targetSectionId = hash.substring(1);
+                // --- Show Standard Page Sections ---
+                const targetSectionId = hash.substring(1); // Get section ID from hash (remove #)
+
+                // Default view (show multiple sections)
                 if (targetSectionId === '' || targetSectionId === 'hero') {
-                    // Default view
-                    document.getElementById('hero').classList.remove('hidden-section');
-                    document.getElementById('plan-details').classList.remove('hidden-section');
-                    document.getElementById('features').classList.remove('hidden-section');
-                    document.getElementById('blog').classList.remove('hidden-section');
-                    renderBlogPostsList(blogPosts);
-                    document.getElementById('status').classList.remove('hidden-section');
+                    document.getElementById('hero')?.classList.remove('hidden-section');
+                    document.getElementById('plan-details')?.classList.remove('hidden-section');
+                    document.getElementById('features')?.classList.remove('hidden-section');
+                    document.getElementById('blog')?.classList.remove('hidden-section');
+                    renderBlogPostsList(blogPosts); // Ensure blog list is rendered
+                    document.getElementById('status')?.classList.remove('hidden-section');
                 } else {
+                    // Show a specific section based on hash
                     const targetSection = document.getElementById(targetSectionId);
                     if (targetSection && targetSection.classList.contains('page-section')) {
                         targetSection.classList.remove('hidden-section');
+                        // If navigating to the blog list section, render the list
                         if (targetSectionId === 'blog') {
                             renderBlogPostsList(blogPosts);
                         }
                     } else {
-                        // Fallback to default view
-                        document.getElementById('hero').classList.remove('hidden-section');
-                        document.getElementById('plan-details').classList.remove('hidden-section');
-                        document.getElementById('features').classList.remove('hidden-section');
-                        document.getElementById('blog').classList.remove('hidden-section');
+                        // Fallback to default view if hash doesn't match a known section
+                        document.getElementById('hero')?.classList.remove('hidden-section');
+                        document.getElementById('plan-details')?.classList.remove('hidden-section');
+                        document.getElementById('features')?.classList.remove('hidden-section');
+                        document.getElementById('blog')?.classList.remove('hidden-section');
                         renderBlogPostsList(blogPosts);
-                        document.getElementById('status').classList.remove('hidden-section');
+                        document.getElementById('status')?.classList.remove('hidden-section');
                     }
                 }
             }
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); // Scroll to top on route change
         }
 
         // --- Run functions when DOM is loaded ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Perform initial status checks
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            renderBlogPostsList(blogPosts); // Render blog list initially
-            handleRouteChange(); // Handle initial route
-            window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
+
+            // Render the initial blog post list
+            renderBlogPostsList(blogPosts);
+
+            // Handle the initial route based on the URL hash on page load
+            handleRouteChange();
+
+            // Listen for hash changes (user clicking internal links)
+            window.addEventListener('hashchange', handleRouteChange);
         });
     </script>
 
