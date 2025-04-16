@@ -15,7 +15,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.skyvps360.xyz/"> <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="twitter:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
-    <meta property="twitter:image" content="images/s-logo.png">
+     <meta property="twitter:image" content="images/s-logo.png">
 
     <meta name="theme-color" content="#2563eb"> <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -334,7 +334,7 @@
             }
         }
 
-        // --- Map Initialization & IP Geolocation (using freegeoip.app) ---
+        // --- Map Initialization & IP Geolocation (using reallyfreegeoip.org via ipify.org) ---
         let map = null; // Make map variable accessible
         const mapMessageElement = document.getElementById('map-message');
 
@@ -360,23 +360,41 @@
                 .bindPopup(`<b>Server: ${serverName}</b>`)
                 .openPopup(); // Open server popup initially
 
-            // --- Try to get user's location via IP using freegeoip.app ---
+            // --- Try to get user's location via IP (Two-Step Process) ---
+            let userIP = null;
             try {
-                // ** Updated fetch URL **
-                const response = await fetch('https://freegeoip.app/json/');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Step 1: Get user's public IP address
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                if (!ipResponse.ok) {
+                    throw new Error(`HTTP error fetching IP! status: ${ipResponse.status}`);
                 }
-                const data = await response.json();
+                const ipData = await ipResponse.json();
+                if (!ipData || !ipData.ip) {
+                     throw new Error('Could not parse IP address from ipify response.');
+                }
+                userIP = ipData.ip;
 
-                // ** Updated response data check **
-                if (data && data.latitude && data.longitude) {
+                // Step 2: Get location data using the obtained IP
+                const geoResponse = await fetch(`https://reallyfreegeoip.org/json/${userIP}`);
+                if (!geoResponse.ok) {
+                     // Handle potential non-JSON error responses from reallyfreegeoip.org
+                     let errorText = `HTTP error fetching geo data! status: ${geoResponse.status}`;
+                     try {
+                         const text = await geoResponse.text();
+                         errorText += ` - ${text}`;
+                     } catch (e) {} // Ignore error reading text body
+                    throw new Error(errorText);
+                }
+                const geoData = await geoResponse.json();
+
+                // Check if the response contains lat/lon
+                if (geoData && geoData.latitude && geoData.longitude) {
                     // Successfully got IP location
-                    const userLat = data.latitude; // Use latitude
-                    const userLng = data.longitude; // Use longitude
+                    const userLat = geoData.latitude;
+                    const userLng = geoData.longitude;
                     const userLocation = L.latLng(userLat, userLng);
-                    const city = data.city || 'Unknown City';
-                    const region = data.region_name || 'Unknown Region'; // Use region_name
+                    const city = geoData.city || 'Unknown City';
+                    const region = geoData.region_name || 'Unknown Region'; // Assuming field name
 
                     // Calculate distance (in meters)
                     const distanceMeters = userLocation.distanceTo(njLocation);
@@ -389,7 +407,7 @@
 
                     // Adjust map view to fit both markers
                     const bounds = L.latLngBounds([njLocation, userLocation]);
-                    map.fitBounds(bounds.pad(0.1)); // pad(0.1) adds some padding
+                    map.fitBounds(bounds.pad(0.1));
 
                     // Reset map message
                      if(mapMessageElement) {
@@ -398,17 +416,24 @@
 
                 } else {
                     // API response might be ok, but missing lat/lon data
-                    throw new Error('Failed to get location data from IP API response.');
+                    throw new Error('Failed to get location data from reallyfreegeoip response.');
                 }
 
             } catch (error) {
-                // Error fetching IP location or processing response
-                console.error("IP Geolocation error (freegeoip.app):", error);
-                const message = "Could not determine your location via IP address.";
+                // Error fetching IP or location, or processing response
+                console.error("IP Geolocation error (two-step):", error);
+                let message = "Could not determine your location via IP address.";
+                // Provide slightly more specific error if IP fetch failed vs geo fetch
+                if (!userIP && error.message.includes('fetching IP')) {
+                    message = "Could not determine your public IP address.";
+                } else if (userIP) {
+                     message = `Could not get location for IP: ${userIP}.`;
+                }
+
                  if(mapMessageElement) {
                    mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
                  }
-                 // Keep map centered on server if IP lookup fails
+                 // Keep map centered on server if lookup fails
                  map.setView(njLocation, 7);
                  serverMarker.openPopup();
             }
@@ -467,7 +492,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            initializeMap(); // Initialize the map using IP lookup (freegeoip.app)
+            initializeMap(); // Initialize the map using two-step IP lookup
             renderBlogPostsList(blogPosts); // Render blog list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
