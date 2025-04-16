@@ -110,10 +110,10 @@
         .leaflet-tile-container img {
             max-width: none !important;
         }
-        /* Style for map error message */
-        #map-message {
-            min-height: 1.25rem; /* Ensure space even when empty */
-        }
+        /* Style for map error message - No longer needed */
+        /* #map-message {
+            min-height: 1.25rem;
+        } */
     </style>
 </head>
 
@@ -225,11 +225,7 @@
                 <div class="container mx-auto">
                     <h2 class="text-3xl font-bold text-center mb-12">Our Network Presence</h2>
                     <div class="max-w-4xl mx-auto">
-                         <div id="map"></div> <p id="map-message" class="text-center text-xs text-gray-500 mt-2">
-                            Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors
-                         </p>
-
-                         <div class="mt-12 bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 md:p-8">
+                         <div id="map"></div> <div class="mt-12 bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 md:p-8">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Jersey Data Center (TEB-2)</h3>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -401,118 +397,34 @@
             }
         }
 
-        // --- Map Initialization & IP Geolocation (using reallyfreegeoip.org via ipify.org) ---
+        // --- Map Initialization (Static DataCenter Location Only) ---
         let map = null; // Make map variable accessible
-        const mapMessageElement = document.getElementById('map-message');
 
-        async function initializeMap() {
+        function initializeMap() {
             const mapElement = document.getElementById('map');
             if (!mapElement || map) return; // Don't run if map element isn't present or map already initialized
 
             // Approx coords for Teterboro, NJ
             const njLocation = L.latLng(40.85, -74.06);
-            const serverName = "New Jersey (TEB-2)"; // Keep using this variable name internally
+            const serverName = "New Jersey (TEB-2)";
 
-            // Initialize map centered on NJ initially
-            map = L.map('map').setView(njLocation, 7); // Start with wider view
+            // Initialize map centered on NJ
+            // Adjusted zoom level for a single marker focus
+            map = L.map('map').setView(njLocation, 9); // Zoom level 9 (adjust as needed)
 
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '' // Attribution is handled in the dedicated p tag now
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors' // Standard attribution
             }).addTo(map);
 
-            // Add marker for NJ location (always shown)
+            // Add marker for NJ location
             const serverMarker = L.marker(njLocation).addTo(map)
-                .bindPopup(`<b>DataCenter: ${serverName}</b>`) // Changed "Server:" to "DataCenter:"
+                .bindPopup(`<b>DataCenter: ${serverName}</b>`)
                 .openPopup(); // Open server popup initially
 
-            // --- Try to get user's location via IP (Two-Step Process) ---
-            let userIP = null;
-            try {
-                // Step 1: Get user's public IP address
-                console.log("[Map Debug] Fetching IP address from ipify..."); // Added log
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                if (!ipResponse.ok) {
-                    throw new Error(`HTTP error fetching IP! status: ${ipResponse.status}`);
-                }
-                const ipData = await ipResponse.json();
-                if (!ipData || !ipData.ip) {
-                     throw new Error('Could not parse IP address from ipify response.');
-                }
-                userIP = ipData.ip;
-                console.log(`[Map Debug] Detected IP: ${userIP}`); // Added log
-
-                // Step 2: Get location data using the obtained IP
-                const geoApiUrl = `https://reallyfreegeoip.org/json/${userIP}`;
-                console.log(`[Map Debug] Fetching geo data from: ${geoApiUrl}`); // Added log
-                const geoResponse = await fetch(geoApiUrl);
-                if (!geoResponse.ok) {
-                     let errorText = `HTTP error fetching geo data! status: ${geoResponse.status}`;
-                     try {
-                         const text = await geoResponse.text();
-                         errorText += ` - ${text}`;
-                     } catch (e) {}
-                    throw new Error(errorText);
-                }
-                const geoData = await geoResponse.json();
-                console.log("[Map Debug] Received geo data:", geoData); // Added log
-
-                // Check if the response contains lat/lon
-                if (geoData && geoData.latitude && geoData.longitude) {
-                    console.log("[Map Debug] Geo data seems valid. Adding user marker."); // Added log
-                    // Successfully got IP location
-                    const userLat = geoData.latitude;
-                    const userLng = geoData.longitude;
-                    const userLocation = L.latLng(userLat, userLng);
-                    const city = geoData.city || 'Unknown City';
-                    const region = geoData.region_name || 'Unknown Region';
-
-                    // Calculate distance
-                    const distanceMeters = userLocation.distanceTo(njLocation);
-                    const distanceKm = (distanceMeters / 1000).toFixed(0);
-                    const distanceMiles = (distanceKm * 0.621371).toFixed(0);
-
-                    // Add marker
-                    const userMarker = L.marker(userLocation).addTo(map)
-                        .bindPopup(`<b>Approx. Location (IP):</b> ${city}, ${region}<br>Approx. ${distanceKm} km / ${distanceMiles} miles from ${serverName}.`);
-
-                    // Adjust map view
-                    const bounds = L.latLngBounds([njLocation, userLocation]);
-                    map.fitBounds(bounds.pad(0.1));
-
-                    // Reset map message
-                     if(mapMessageElement) {
-                       mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors`;
-                     }
-
-                } else {
-                    // API response ok, but missing lat/lon data
-                    console.error("[Map Debug] Geo data received, but missing latitude/longitude fields."); // Added log
-                    throw new Error('Failed to get required location data (lat/lon) from reallyfreegeoip response.');
-                }
-
-            } catch (error) {
-                // Error fetching IP or location, or processing response
-                console.error("[Map Debug] IP Geolocation error (two-step):", error); // Ensure full error is logged
-                let message = "Could not determine your location via IP address.";
-                if (!userIP && error.message.includes('fetching IP')) {
-                    message = "Could not determine your public IP address.";
-                } else if (userIP) {
-                     // Use the more detailed error if available
-                     message = `Could not get location for IP: ${userIP}. Error: ${error.message}`;
-                } else {
-                     message = `Could not determine your location via IP address. Error: ${error.message}`;
-                }
-
-
-                 if(mapMessageElement) {
-                   mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
-                 }
-                 // Keep map centered on server if lookup fails
-                 map.setView(njLocation, 7);
-                 serverMarker.openPopup();
-            }
+            // Removed all IP geolocation logic
+            console.log("[Map Debug] Initialized map with static DataCenter location only.");
         }
 
 
@@ -568,7 +480,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            initializeMap(); // Initialize the map using two-step IP lookup
+            initializeMap(); // Initialize the static map
             renderBlogPostsList(blogPosts); // Render blog list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
