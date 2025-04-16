@@ -334,7 +334,7 @@
             }
         }
 
-        // --- Map Initialization & IP Geolocation ---
+        // --- Map Initialization & IP Geolocation (using freegeoip.app) ---
         let map = null; // Make map variable accessible
         const mapMessageElement = document.getElementById('map-message');
 
@@ -360,21 +360,23 @@
                 .bindPopup(`<b>Server: ${serverName}</b>`)
                 .openPopup(); // Open server popup initially
 
-            // --- Try to get user's location via IP ---
+            // --- Try to get user's location via IP using freegeoip.app ---
             try {
-                const response = await fetch('https://ip-api.com/json/');
+                // ** Updated fetch URL **
+                const response = await fetch('https://freegeoip.app/json/');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
 
-                if (data.status === 'success' && data.lat && data.lon) {
+                // ** Updated response data check **
+                if (data && data.latitude && data.longitude) {
                     // Successfully got IP location
-                    const userLat = data.lat;
-                    const userLng = data.lon;
+                    const userLat = data.latitude; // Use latitude
+                    const userLng = data.longitude; // Use longitude
                     const userLocation = L.latLng(userLat, userLng);
                     const city = data.city || 'Unknown City';
-                    const region = data.regionName || 'Unknown Region';
+                    const region = data.region_name || 'Unknown Region'; // Use region_name
 
                     // Calculate distance (in meters)
                     const distanceMeters = userLocation.distanceTo(njLocation);
@@ -395,13 +397,13 @@
                      }
 
                 } else {
-                    // API returned success=false or missing lat/lon
-                    throw new Error(data.message || 'Failed to get location data from IP API.');
+                    // API response might be ok, but missing lat/lon data
+                    throw new Error('Failed to get location data from IP API response.');
                 }
 
             } catch (error) {
                 // Error fetching IP location or processing response
-                console.error("IP Geolocation error:", error);
+                console.error("IP Geolocation error (freegeoip.app):", error);
                 const message = "Could not determine your location via IP address.";
                  if(mapMessageElement) {
                    mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
@@ -465,7 +467,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            initializeMap(); // Initialize the map using IP lookup
+            initializeMap(); // Initialize the map using IP lookup (freegeoip.app)
             renderBlogPostsList(blogPosts); // Render blog list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
