@@ -89,7 +89,7 @@
             display: inline-block; /* Needed for margin */
         }
 
-        /* ** Re-added Icon styling for DC features/services ** */
+        /* Icon styling for DC features/services */
         .dc-feature-icon {
             margin-right: 0.5rem; /* mr-2 */
             width: 1.25rem; /* w-5 */
@@ -107,10 +107,10 @@
 
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center text-2xl font-bold text-blue-600">
-                 <img src="images/logo.png" alt="SkyVPS360 Logo" class="h-8 w-10 mr-2 rounded"> <span>SkyVPS360</span>
+            <a href="#" class="flex items-center text-2xl font-bold text-blue-600 flex-shrink-0"> <img src="images/logo.png" alt="SkyVPS360 Logo" class="h-8 w-10 mr-2 rounded"> <span>SkyVPS360</span>
             </a>
-            <div class="space-x-4 flex items-center">
+
+            <div class="hidden lg:flex lg:items-center lg:space-x-4">
                 <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a>
                 <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a>
                 <a href="#locations" class="nav-link text-gray-600 hover:text-blue-600">Locations</a>
@@ -125,7 +125,30 @@
                 <a href="https://my.skyvps360.xyz/register"
                     class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Register</a>
             </div>
+
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </nav>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <a href="#plan-details" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Our Offering</a>
+            <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Features</a>
+            <a href="#locations" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Locations</a>
+            <a href="#blog" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Blog</a>
+            <a href="#status" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 border-b pb-3 mb-3">Status</a>
+             <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+                 <i class="fab fa-discord text-xl mr-2"></i> Discord
+             </a>
+             <div class="px-4 py-3 space-y-2">
+                 <a href="https://my.skyvps360.xyz/login"
+                    class="block text-center text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50 transition duration-300 w-full">Login</a>
+                 <a href="https://my.skyvps360.xyz/register"
+                    class="block text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 w-full">Register</a>
+             </div>
+        </div>
     </header>
 
     <main id="main-content">
@@ -419,13 +442,29 @@
 
         // --- Map Initialization REMOVED ---
 
-        // --- Updated Router (Scroll Navigation) ---
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // --- Router (Scroll Navigation) ---
         const mainPageSectionsDiv = document.getElementById('main-page-sections');
         const fullPostViewSection = document.getElementById('full-post-view');
 
         function handleRouteChange() {
             const hash = window.location.hash || '#hero';
             const blogPostMatch = hash.match(/^#blog\/(.+)/);
+
+             // Close mobile menu on route change
+             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                 mobileMenu.classList.add('hidden');
+             }
+
 
             if (blogPostMatch) {
                 // --- Show Single Blog Post ---
@@ -442,17 +481,14 @@
                 fullPostViewSection?.classList.add('hidden-section');
                 renderBlogPostsList(blogPosts); // Render list if not already visible
 
-                // ** Important: Check if targetElement exists before scrolling **
                 if (hash && hash !== '#hero' && hash !== '#') {
                     const targetSectionId = hash.substring(1);
                     const targetElement = document.getElementById(targetSectionId);
-                    // Only scroll if the target element exists on the page
                     if (targetElement) {
                          setTimeout(() => {
-                            // Adjust scrolling to account for sticky header height if necessary
                             const headerOffset = document.querySelector('header')?.offsetHeight || 0;
                             const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10; // Extra 10px padding
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10;
 
                             window.scrollTo({
                                 top: offsetPosition,
@@ -460,7 +496,6 @@
                             });
                          }, 0);
                     } else {
-                        // If target doesn't exist (e.g. #locations was removed), scroll to top
                         console.warn(`[Router] Target element not found for hash: ${hash}. Scrolling to top.`);
                         window.scrollTo(0, 0);
                     }
@@ -475,7 +510,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            // initializeMap(); // REMOVED Map initialization
             renderBlogPostsList(blogPosts); // Render blog list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
