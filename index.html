@@ -8,14 +8,14 @@
     <meta name="description" content="SkyVPS360 offers robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability at affordable prices.">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://skyvps360.xyz/"> <meta property="og:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
+    <meta property="og:url" content="https://www.skyvps360.xyz/"> <meta property="og:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="og:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
-    <meta property="og:image" content="images/logo.png">
+    <meta property="og:image" content="images/s-logo.png">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://skyvps360.xyz/"> <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
+    <meta property="twitter:url" content="https://www.skyvps360.xyz/"> <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="twitter:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
-    <meta property="twitter:image" content="images/logo.png">
+    <meta property="twitter:image" content="images/s-logo.png">
 
     <meta name="theme-color" content="#2563eb"> <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -276,7 +276,7 @@
         // --- Status Check Function ---
         async function checkStatus(url, elementId) {
             // ... (status check code remains the same)
-            const statusElement = document.getElementById(elementId);
+             const statusElement = document.getElementById(elementId);
             if (!statusElement) return;
             statusElement.innerHTML = '<span class="status-dot status-checking"></span>Checking...';
             try {
@@ -293,7 +293,7 @@
 
         // --- Blog Post Data ---
         const blogPosts = [ /* ... blog post data ... */
-            {
+             {
                 title: "Welcome to the New SkyVPS360 Frontend!",
                 date: "April 16, 2025",
                 snippet: "We're excited to launch our new frontend, making it easier than ever to explore our VPS offerings...",
@@ -304,7 +304,7 @@
 
         // --- Blog Post Rendering Functions ---
         function renderBlogPostsList(posts) { /* ... remains the same ... */
-            const container = document.getElementById('blog-posts-container');
+             const container = document.getElementById('blog-posts-container');
             if (!container) return;
             if (!posts || posts.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500">No blog posts available.</p>';
@@ -317,7 +317,7 @@
             container.innerHTML = postsHTML;
         }
         function renderFullPost(post) { /* ... remains the same ... */
-            const container = document.getElementById('full-post-view');
+             const container = document.getElementById('full-post-view');
             if (!container) return;
             if (!post) {
                 container.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
@@ -334,11 +334,11 @@
             }
         }
 
-        // --- Map Initialization & Geolocation ---
+        // --- Map Initialization & IP Geolocation ---
         let map = null; // Make map variable accessible
         const mapMessageElement = document.getElementById('map-message');
 
-        function initializeMap() {
+        async function initializeMap() {
             const mapElement = document.getElementById('map');
             if (!mapElement || map) return; // Don't run if map element isn't present or map already initialized
 
@@ -347,7 +347,7 @@
             const serverName = "New Jersey (TEB-2)";
 
             // Initialize map centered on NJ initially
-            map = L.map('map').setView(njLocation, 7);
+            map = L.map('map').setView(njLocation, 7); // Start with wider view
 
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -357,71 +357,58 @@
 
             // Add marker for NJ server location (always shown)
             const serverMarker = L.marker(njLocation).addTo(map)
-                .bindPopup(`<b>Server: ${serverName}</b>`);
+                .bindPopup(`<b>Server: ${serverName}</b>`)
+                .openPopup(); // Open server popup initially
 
-            // --- Try to get user's location ---
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        // Success: User allowed location access
-                        const userLat = position.coords.latitude;
-                        const userLng = position.coords.longitude;
-                        const userLocation = L.latLng(userLat, userLng);
-
-                        // Calculate distance (in meters)
-                        const distanceMeters = userLocation.distanceTo(njLocation);
-                        const distanceKm = (distanceMeters / 1000).toFixed(0);
-                        const distanceMiles = (distanceKm * 0.621371).toFixed(0);
-
-                        // Add marker for user's location
-                        const userMarker = L.marker(userLocation).addTo(map)
-                            .bindPopup(`<b>Your Approx. Location</b><br>Approx. ${distanceKm} km / ${distanceMiles} miles from ${serverName}.`);
-
-                        // Adjust map view to fit both markers
-                        const bounds = L.latLngBounds([njLocation, userLocation]);
-                        map.fitBounds(bounds.pad(0.1)); // pad(0.1) adds some padding
-
-                        // Optional: Open user popup
-                        // userMarker.openPopup();
-
-                        if(mapMessageElement) {
-                           mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors`; // Reset message
-                        }
-
-                    },
-                    (error) => {
-                        // Error: User denied or location unavailable
-                        console.error("Geolocation error:", error);
-                        let message = "Could not determine your location.";
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                message = "Location access denied. Cannot show your location.";
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                message = "Location information is unavailable.";
-                                break;
-                            case error.TIMEOUT:
-                                message = "The request to get user location timed out.";
-                                break;
-                            case error.UNKNOWN_ERROR:
-                                message = "An unknown error occurred while getting location.";
-                                break;
-                        }
-                         if(mapMessageElement) {
-                           mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
-                         }
-                         // Keep map centered on server
-                         map.setView(njLocation, 7);
-                         serverMarker.openPopup(); // Open server popup if user location fails
-                    }
-                );
-            } else {
-                // Geolocation not supported by browser
-                console.error("Geolocation is not supported by this browser.");
-                if(mapMessageElement) {
-                    mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">Geolocation not supported by your browser.</span>`;
+            // --- Try to get user's location via IP ---
+            try {
+                const response = await fetch('https://ip-api.com/json/');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                serverMarker.openPopup();
+                const data = await response.json();
+
+                if (data.status === 'success' && data.lat && data.lon) {
+                    // Successfully got IP location
+                    const userLat = data.lat;
+                    const userLng = data.lon;
+                    const userLocation = L.latLng(userLat, userLng);
+                    const city = data.city || 'Unknown City';
+                    const region = data.regionName || 'Unknown Region';
+
+                    // Calculate distance (in meters)
+                    const distanceMeters = userLocation.distanceTo(njLocation);
+                    const distanceKm = (distanceMeters / 1000).toFixed(0);
+                    const distanceMiles = (distanceKm * 0.621371).toFixed(0);
+
+                    // Add marker for user's IP location
+                    const userMarker = L.marker(userLocation).addTo(map)
+                        .bindPopup(`<b>Approx. Location (IP):</b> ${city}, ${region}<br>Approx. ${distanceKm} km / ${distanceMiles} miles from ${serverName}.`);
+
+                    // Adjust map view to fit both markers
+                    const bounds = L.latLngBounds([njLocation, userLocation]);
+                    map.fitBounds(bounds.pad(0.1)); // pad(0.1) adds some padding
+
+                    // Reset map message
+                     if(mapMessageElement) {
+                       mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors`;
+                     }
+
+                } else {
+                    // API returned success=false or missing lat/lon
+                    throw new Error(data.message || 'Failed to get location data from IP API.');
+                }
+
+            } catch (error) {
+                // Error fetching IP location or processing response
+                console.error("IP Geolocation error:", error);
+                const message = "Could not determine your location via IP address.";
+                 if(mapMessageElement) {
+                   mapMessageElement.innerHTML = `Map data &copy; <a href="https://www.openstreetmap.org/copyright" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors | <span class="text-red-500">${message}</span>`;
+                 }
+                 // Keep map centered on server if IP lookup fails
+                 map.setView(njLocation, 7);
+                 serverMarker.openPopup();
             }
         }
 
@@ -454,7 +441,15 @@
                     const targetElement = document.getElementById(targetSectionId);
                     if (targetElement) {
                          setTimeout(() => {
-                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            // Adjust scrolling to account for sticky header height if necessary
+                            const headerOffset = document.querySelector('header')?.offsetHeight || 0;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10; // Extra 10px padding
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
                          }, 0);
                     } else {
                         window.scrollTo(0, 0); // Scroll top if hash invalid
@@ -470,7 +465,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
-            initializeMap(); // Initialize the map
+            initializeMap(); // Initialize the map using IP lookup
             renderBlogPostsList(blogPosts); // Render blog list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
