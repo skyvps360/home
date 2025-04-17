@@ -1,0 +1,102 @@
+/* Set base font */
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    /* Removed transition-colors */
+}
+
+/* Styling for the main plan block */
+.main-plan-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.main-plan-block .plan-content {
+    flex-grow: 1;
+}
+.main-plan-block .plan-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+
+/* Base styling for status dots */
+.status-dot {
+    display: inline-block;
+    width: 0.75rem; /* w-3 */
+    height: 0.75rem; /* h-3 */
+    border-radius: 9999px; /* rounded-full */
+    margin-right: 0.5rem; /* mr-2 */
+}
+/* Status dot colors */
+.status-checking { background-color: #f59e0b; /* amber-500 */ }
+.status-online { background-color: #22c55e; /* green-500 */ }
+.status-offline { background-color: #ef4444; /* red-500 */ }
+
+/* Utility class to hide sections */
+.hidden-section {
+    display: none;
+}
+
+/* Ensure Font Awesome icons have consistent size and margin */
+.feature-icon {
+    font-size: 2.5rem; /* text-4xl equivalent */
+    line-height: 1; /* Prevent extra space */
+    margin-bottom: 1rem; /* mb-4 */
+    display: inline-block; /* Needed for margin */
+}
+
+/* Icon styling for DC features/services */
+.dc-feature-icon {
+    margin-right: 0.5rem; /* mr-2 */
+    width: 1.25rem; /* w-5 */
+    text-align: center;
+}
+/* Check/Square Icons */
+.fa-check-square { @apply text-green-500; }
+.fa-square { @apply text-gray-400; } /* Removed dark variant */
+
+/* Basic styling for policy/docs/content sections */
+.content-view h2 {
+    @apply text-4xl font-bold mb-6 text-center;
+}
+ .content-view h3 {
+    @apply text-xl font-semibold mt-6 mb-3 border-b pb-2;
+}
+.content-view p, .content-view ul, .content-view pre {
+     @apply mb-4 leading-relaxed;
+}
+ .content-view ul {
+    @apply list-disc pl-6;
+}
+ .content-view ol {
+    @apply list-decimal pl-6;
+ }
+ .content-view li {
+     @apply mb-1;
+ }
+ .content-view strong {
+    @apply font-semibold;
+}
+ .content-view code { /* Inline code */
+    @apply bg-gray-100 px-1 py-0.5 rounded-sm text-sm font-mono; /* Removed dark variant */
+ }
+ .content-view pre { /* Code blocks */
+     @apply bg-gray-800 text-gray-100 p-4 rounded-md overflow-x-auto text-sm; /* Removed dark variant */
+ }
+ .content-view pre code {
+     @apply bg-transparent p-0;
+ }
+ .back-link {
+    display: inline-block;
+    margin-top: 2rem; /* mt-8 */
+ }
+ .content-view .disclaimer {
+     @apply italic text-sm text-red-600 mt-4 mb-4 p-3 bg-red-50 border-l-4 border-red-500; /* Removed dark variants */
+ }
+
+/* --- Pagination Styles --- */
+.pagination-controls {
+    @apply flex justify-center items-center mt-6 pt-4 border-t border-gray-200; /* Removed dark variant */
+}
+/* Button styles applied directly via classes in renderPaginationControls */
