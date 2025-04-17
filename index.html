@@ -20,10 +20,7 @@
     <meta property="twitter:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
     <meta property="twitter:image" content="https://skyvps360.xyz/images/logo.png">
 
-    <meta name="theme-color" content="#2563eb">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <meta name="theme-color" content="#ffffff"> <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -37,25 +34,21 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth; /* Enable smooth scrolling */
+            /* Removed transition-colors */
         }
 
         /* Styling for the main plan block */
         .main-plan-block {
-            border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            background-color: #f9fafb; /* gray-50 */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
-            display: flex; /* Use flexbox for layout */
-            flex-direction: column; /* Stack content vertically */
-            height: 100%; /* Make cards in a row equal height */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .main-plan-block .plan-content {
-            flex-grow: 1; /* Allow content to grow */
+            flex-grow: 1;
         }
         .main-plan-block .plan-footer {
-            margin-top: auto; /* Push footer to bottom */
-            padding-top: 1rem; /* Add some space above the button */
+            margin-top: auto;
+            padding-top: 1rem;
         }
 
 
@@ -67,21 +60,10 @@
             border-radius: 9999px; /* rounded-full */
             margin-right: 0.5rem; /* mr-2 */
         }
-
         /* Status dot colors */
         .status-checking { background-color: #f59e0b; /* amber-500 */ }
         .status-online { background-color: #22c55e; /* green-500 */ }
         .status-offline { background-color: #ef4444; /* red-500 */ }
-
-        /* Styling for list items (blog, docs) */
-        .list-item-card { /* Renamed from blog-post for broader use */
-            background-color: white;
-            border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            margin-bottom: 1.5rem; /* mb-6 */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
-        }
 
         /* Utility class to hide sections */
         .hidden-section {
@@ -102,127 +84,60 @@
             width: 1.25rem; /* w-5 */
             text-align: center;
         }
-        .fa-check-square { color: #22c55e; /* green-500 */ }
-        .fa-square { color: #9ca3af; /* gray-400 */ }
+        /* Check/Square Icons */
+        .fa-check-square { @apply text-green-500; }
+        .fa-square { @apply text-gray-400; } /* Removed dark variant */
 
         /* Basic styling for policy/docs/content sections */
-        .content-view h2 { /* Target h2 within policy/doc view */
-            font-size: 2.25rem; /* text-4xl */
-            line-height: 2.5rem; /* leading-10 */
-            font-weight: 700; /* font-bold */
-            margin-bottom: 1.5rem; /* mb-6 */
-            text-align: center;
+        .content-view h2 {
+            @apply text-4xl font-bold mb-6 text-center;
         }
-         .content-view h3 { /* Target h3 within policy/doc view */
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            margin-top: 1.5rem; /* mt-6 */
-            margin-bottom: 0.75rem; /* mb-3 */
-            border-bottom: 1px solid #e5e7eb; /* border-b border-gray-200 */
-            padding-bottom: 0.5rem; /* pb-2 */
+         .content-view h3 {
+            @apply text-xl font-semibold mt-6 mb-3 border-b pb-2;
         }
         .content-view p, .content-view ul, .content-view pre {
-            margin-bottom: 1rem; /* mb-4 */
-            line-height: 1.6; /* leading-relaxed */
-            color: #4b5563; /* text-gray-700 */
+             @apply mb-4 leading-relaxed;
         }
          .content-view ul {
-            list-style: disc;
-            padding-left: 1.5rem; /* pl-6 */
+            @apply list-disc pl-6;
         }
          .content-view ol {
-            list-style: decimal;
-            padding-left: 1.5rem; /* pl-6 */
+            @apply list-decimal pl-6;
          }
          .content-view li {
-             margin-bottom: 0.25rem; /* mb-1 */
+             @apply mb-1;
          }
          .content-view strong {
-            font-weight: 600; /* font-semibold */
-            color: #1f2937; /* text-gray-800 */
+            @apply font-semibold;
         }
          .content-view code { /* Inline code */
-            background-color: #f3f4f6; /* gray-100 */
-            padding: 0.1em 0.4em;
-            border-radius: 0.25rem; /* rounded-sm */
-            font-size: 0.9em;
-            font-family: monospace;
+            @apply bg-gray-100 px-1 py-0.5 rounded-sm text-sm font-mono; /* Removed dark variant */
          }
          .content-view pre { /* Code blocks */
-             background-color: #1f2937; /* gray-800 */
-             color: #f9fafb; /* gray-50 */
-             padding: 1rem; /* p-4 */
-             border-radius: 0.375rem; /* rounded-md */
-             overflow-x: auto;
-             font-size: 0.9em;
+             @apply bg-gray-800 text-gray-100 p-4 rounded-md overflow-x-auto text-sm; /* Removed dark variant */
          }
          .content-view pre code {
-             background-color: transparent;
-             padding: 0;
-             color: inherit;
+             @apply bg-transparent p-0;
          }
-         /* Base styles for back link/button */
          .back-link {
             display: inline-block;
             margin-top: 2rem; /* mt-8 */
          }
-
          .content-view .disclaimer {
-             font-style: italic;
-             font-size: 0.875rem; /* text-sm */
-             color: #ef4444; /* text-red-500 */
-             margin-top: 1rem;
-             margin-bottom: 1rem;
-             padding: 0.75rem; /* p-3 */
-             background-color: #fee2e2; /* red-100 */
-             border-left: 4px solid #ef4444; /* border-l-4 border-red-500 */
+             @apply italic text-sm text-red-600 mt-4 mb-4 p-3 bg-red-50 border-l-4 border-red-500; /* Removed dark variants */
          }
 
         /* --- Pagination Styles --- */
         .pagination-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 1.5rem; /* mt-6 */
-            padding-top: 1rem; /* pt-4 */
-            border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
+            @apply flex justify-center items-center mt-6 pt-4 border-t border-gray-200; /* Removed dark variant */
         }
-        .pagination-button {
-            padding: 0.5rem 1rem; /* px-4 py-2 */
-            margin: 0 0.25rem; /* mx-1 */
-            border: 1px solid #d1d5db; /* border border-gray-300 */
-            background-color: white;
-            color: #374151; /* text-gray-700 */
-            border-radius: 0.375rem; /* rounded-md */
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            font-size: 0.875rem; /* text-sm */
-            line-height: 1.25rem;
-        }
-        .pagination-button:hover:not(:disabled) {
-            background-color: #f3f4f6; /* hover:bg-gray-100 */
-        }
-        .pagination-button.active {
-            background-color: #2563eb; /* bg-blue-600 */
-            color: white;
-            border-color: #2563eb; /* border-blue-600 */
-            cursor: default;
-        }
-        .pagination-button:disabled {
-            color: #9ca3af; /* text-gray-400 */
-            cursor: not-allowed;
-            background-color: #f9fafb; /* bg-gray-50 */
-        }
+        /* Button styles applied directly via classes in renderPaginationControls */
 
     </style>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
-
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center text-2xl font-bold text-blue-600 flex-shrink-0">
-                 <img src="images/logo.png"
+<body class="bg-gray-100 text-gray-800"> <header class="bg-white shadow-md sticky top-0 z-50"> <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center text-2xl font-bold text-blue-600 flex-shrink-0"> <img src="images/logo.png"
                       alt="SkyVPS360 Logo"
                       class="h-8 w-10 mr-2 rounded"
                       onerror="this.onerror=null; this.src='https://placehold.co/40x32/2563eb/ffffff?text=S';">
@@ -230,45 +145,25 @@
             </a>
 
             <div class="hidden lg:flex lg:items-center lg:space-x-4">
-                <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a>
-                <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a>
-                <a href="#locations" class="nav-link text-gray-600 hover:text-blue-600">Locations</a>
-                <a href="#docs" class="nav-link text-gray-600 hover:text-blue-600">Docs</a>
-                <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a>
-                <a href="#status" class="nav-link text-gray-600 hover:text-blue-600">Status</a>
-                <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-600 hover:text-blue-600" title="Join our Discord">
-                    <i class="fab fa-discord text-xl"></i>
+                <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a> <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a> <a href="#locations" class="nav-link text-gray-600 hover:text-blue-600">Locations</a> <a href="#docs" class="nav-link text-gray-600 hover:text-blue-600">Docs</a> <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a> <a href="#status" class="nav-link text-gray-600 hover:text-blue-600">Status</a> <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-600 hover:text-blue-600" title="Join our Discord"> <i class="fab fa-discord text-xl"></i>
                 </a>
                 <a href="https://my.skyvps360.xyz/login"
-                    class="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50 transition duration-300">Login</a>
-                <a href="https://my.skyvps360.xyz/register"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Register</a>
-            </div>
+                    class="ml-4 text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50 transition duration-300">Login</a> <a href="https://my.skyvps360.xyz/register"
+                    class="ml-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300">Register</a> </div>
 
-            <div class="lg:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
+            <div class="lg:hidden flex items-center space-x-4">
+                 <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none"> <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </nav>
 
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
-            <a href="#plan-details" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Our Offering</a>
-            <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Features</a>
-            <a href="#locations" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Locations</a>
-            <a href="#docs" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Docs</a>
-            <a href="#blog" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Blog</a>
-            <a href="#status" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 border-b pb-3 mb-3">Status</a>
-             <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-                 <i class="fab fa-discord text-xl mr-2"></i> Discord
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200"> <a href="#plan-details" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Our Offering</a> <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Features</a> <a href="#locations" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Locations</a> <a href="#docs" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Docs</a> <a href="#blog" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Blog</a> <a href="#status" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 border-b border-gray-200 pb-3 mb-3">Status</a> <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100"> <i class="fab fa-discord text-xl mr-2"></i> Discord
              </a>
              <div class="px-4 py-3 space-y-2">
                  <a href="https://my.skyvps360.xyz/login"
-                    class="block text-center text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50 transition duration-300 w-full">Login</a>
-                 <a href="https://my.skyvps360.xyz/register"
-                    class="block text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 w-full">Register</a>
-             </div>
+                    class="block text-center text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50 transition duration-300 w-full">Login</a> <a href="https://my.skyvps360.xyz/register"
+                     class="block text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300 w-full">Register</a> </div>
         </div>
     </header>
 
@@ -285,137 +180,83 @@
                 </div>
             </section>
 
-            <section id="plan-details" class="page-section py-16 bg-white px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-6">Our Storage Plans</h2>
-                    <p class="text-center text-gray-600 mb-12">Affordable KVM VPS plans with generous storage allocations.</p>
-
-                    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="main-plan-block">
-                             <div class="plan-content">
+            <section id="plan-details" class="page-section py-16 bg-white px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-6 text-gray-900">Our Storage Plans</h2> <p class="text-center text-gray-600 mb-12">Affordable KVM VPS plans with generous storage allocations.</p> <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="main-plan-block bg-gray-50 border border-gray-200 rounded-lg p-6 shadow-sm"> <div class="plan-content">
                                 <div class="md:flex md:items-center md:justify-between mb-6">
-                                    <h3 class="text-2xl font-semibold mb-2 md:mb-0">KVMStorage100 Plan</h3>
-                                    <div class="text-3xl font-bold text-blue-600">$3.99 <span
-                                            class="text-lg font-normal text-gray-500">USD/month</span></div>
-                                </div>
-                                <p class="text-gray-500 mb-6">Dive into expansive storage solutions built for versatility and speed. Optimized for quick responsiveness.</p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-6">
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li>✔️ <strong>1 vCPU Core</strong></li>
+                                    <h3 class="text-2xl font-semibold mb-2 md:mb-0 text-gray-900">KVMStorage100 Plan</h3> <div class="text-3xl font-bold text-blue-600">$3.99 <span
+                                            class="text-lg font-normal text-gray-500">USD/month</span></div> </div>
+                                <p class="text-gray-500 mb-6">Dive into expansive storage solutions built for versatility and speed. Optimized for quick responsiveness.</p> <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-6">
+                                    <ul class="space-y-2 text-sm text-gray-700"> <li>✔️ <strong>1 vCPU Core</strong></li>
                                         <li>✔️ <strong>1024 MiB RAM</strong></li>
                                         <li>✔️ <strong>Choice of Swap:</strong> None - 8GB</li>
-                                        <li>✔️ <strong>128 GiB Primary Storage</strong> <span class="block text-xs text-gray-500">(Expandable - $0.99/mo per 128GB)</span></li>
-                                        <li>✔️ <strong>Scheduled Backups</strong> <span class="block text-xs text-gray-500">(Restore On Demand)</span></li>
-                                    </ul>
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li>✔️ <strong>500 GiB Bandwidth</strong> <span class="block text-xs text-gray-500">(1Gbps Port / 8Gbps Shared Uplink)</span></li>
-                                        <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
+                                        <li>✔️ <strong>128 GiB Primary Storage</strong> <span class="block text-xs text-gray-500">(Expandable - $0.99/mo per 128GB)</span></li> <li>✔️ <strong>Scheduled Backups</strong> <span class="block text-xs text-gray-500">(Restore On Demand)</span></li> </ul>
+                                    <ul class="space-y-2 text-sm text-gray-700"> <li>✔️ <strong>500 GiB Bandwidth</strong> <span class="block text-xs text-gray-500">(1Gbps Port / 8Gbps Shared Uplink)</span></li> <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
                                         <li>✔️ <strong>1 /80 IPv6 Subnet</strong></li>
                                         <li>✔️ <strong>20 Allocated Ports</strong></li>
                                         <li>✔️ <strong>Ticket Support</strong></li>
                                     </ul>
                                 </div>
-                                <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p>
-                             </div>
+                                <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p> </div>
                              <div class="plan-footer">
                                 <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
-                                    class="block w-full text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
-                                    Details & Order</a>
-                             </div>
+                                    class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition duration-300 font-semibold">View
+                                    Details & Order</a> </div>
                         </div>
 
-                        <div class="main-plan-block">
-                            <div class="plan-content">
+                        <div class="main-plan-block bg-gray-50 border border-gray-200 rounded-lg p-6 shadow-sm"> <div class="plan-content">
                                 <div class="md:flex md:items-center md:justify-between mb-6">
-                                    <h3 class="text-2xl font-semibold mb-2 md:mb-0">KVMStorage200 Plan</h3>
-                                    <div class="text-3xl font-bold text-blue-600">$6.99 <span
-                                            class="text-lg font-normal text-gray-500">USD/month</span></div>
-                                </div>
-                                <p class="text-gray-500 mb-6">Enhanced resources for more demanding tasks and larger storage needs, including backups.</p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-6">
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li>✔️ <strong>1 vCPU Core</strong></li>
+                                    <h3 class="text-2xl font-semibold mb-2 md:mb-0 text-gray-900">KVMStorage200 Plan</h3> <div class="text-3xl font-bold text-blue-600">$6.99 <span
+                                            class="text-lg font-normal text-gray-500">USD/month</span></div> </div>
+                                <p class="text-gray-500 mb-6">Enhanced resources for more demanding tasks and larger storage needs, including backups.</p> <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-6">
+                                    <ul class="space-y-2 text-sm text-gray-700"> <li>✔️ <strong>1 vCPU Core</strong></li>
                                         <li>✔️ <strong>2 GiB RAM</strong></li>
                                         <li>✔️ <strong>Choice of Swap:</strong> None - 8GB</li>
-                                        <li>✔️ <strong>256 GiB Storage</strong><span class="block text-xs text-gray-500">(Expandable - $0.99/mo per 128GB)</span></li>
-                                        <li>✔️ <strong>Scheduled Backups</strong> <span class="block text-xs text-gray-500">(Restore On Demand)</span></li>
-                                    </ul>
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li>✔️ <strong>1 TiB Bandwidth</strong> <span class="block text-xs text-gray-500">(1Gbps Port / 8Gbps Shared Uplink)</span></li>
-                                        <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
+                                        <li>✔️ <strong>256 GiB Storage</strong><span class="block text-xs text-gray-500">(Expandable - $0.99/mo per 128GB)</span></li> <li>✔️ <strong>Scheduled Backups</strong> <span class="block text-xs text-gray-500">(Restore On Demand)</span></li> </ul>
+                                    <ul class="space-y-2 text-sm text-gray-700"> <li>✔️ <strong>1 TiB Bandwidth</strong> <span class="block text-xs text-gray-500">(1Gbps Port / 8Gbps Shared Uplink)</span></li> <li>✔️ <strong>1 NAT IPv4 Address</strong></li>
                                         <li>✔️ <strong>1 /80 IPv6 Subnet</strong></li>
                                         <li>✔️ <strong>20 Allocated Ports</strong></li>
                                         <li>✔️ <strong>Ticket Support</strong></li>
                                     </ul>
                                 </div>
-                                <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p>
-                                </div>
+                                <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p> </div>
                              <div class="plan-footer">
                                 <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
-                                    class="block w-full text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
-                                    Details & Order</a>
-                             </div>
+                                    class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition duration-300 font-semibold">View
+                                    Details & Order</a> </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="features" class="page-section py-16 bg-gray-100 px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-12">Why Choose SkyVPS360?</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <i class="fa-solid fa-gauge-high feature-icon text-blue-600"></i>
-                            <h3 class="text-xl font-semibold mb-2">KVM Performance</h3>
-                            <p class="text-gray-600">Leveraging powerful KVM virtualization and Network SATA for superior speed and responsiveness.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <i class="fa-solid fa-server feature-icon text-blue-600"></i>
-                            <h3 class="text-xl font-semibold mb-2">VirtFusion Control</h3>
-                            <p class="text-gray-600">Manage your VPS effortlessly with the modern VirtFusion panel: boot, reboot, reinstall, console access, and more.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <i class="fa-solid fa-network-wired feature-icon text-blue-600"></i>
-                            <h3 class="text-xl font-semibold mb-2">Flexible Connectivity</h3>
-                            <p class="text-gray-600">Get connected with NAT IPv4 (20 ports included) and a dedicated /80 IPv6 subnet for future-proofing.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <i class="fa-solid fa-compact-disc feature-icon text-blue-600"></i>
-                            <h3 class="text-xl font-semibold mb-2">Easy OS Deployment</h3>
-                            <p class="text-gray-600">Quickly deploy your preferred operating system using a wide range of templates available via VirtFusion.</p>
-                        </div>
+            <section id="features" class="page-section py-16 bg-gray-100 px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Why Choose SkyVPS360?</h2> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                        <div class="bg-white p-6 rounded-lg shadow-sm"> <i class="fa-solid fa-gauge-high feature-icon text-blue-600"></i> <h3 class="text-xl font-semibold mb-2 text-gray-900">KVM Performance</h3> <p class="text-gray-600">Leveraging powerful KVM virtualization and Network SATA for superior speed and responsiveness.</p> </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"> <i class="fa-solid fa-server feature-icon text-blue-600"></i> <h3 class="text-xl font-semibold mb-2 text-gray-900">VirtFusion Control</h3> <p class="text-gray-600">Manage your VPS effortlessly with the modern VirtFusion panel: boot, reboot, reinstall, console access, and more.</p> </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"> <i class="fa-solid fa-network-wired feature-icon text-blue-600"></i> <h3 class="text-xl font-semibold mb-2 text-gray-900">Flexible Connectivity</h3> <p class="text-gray-600">Get connected with NAT IPv4 (20 ports included) and a dedicated /80 IPv6 subnet for future-proofing.</p> </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm"> <i class="fa-solid fa-compact-disc feature-icon text-blue-600"></i> <h3 class="text-xl font-semibold mb-2 text-gray-900">Easy OS Deployment</h3> <p class="text-gray-600">Quickly deploy your preferred operating system using a wide range of templates available via VirtFusion.</p> </div>
                     </div>
                 </div>
             </section>
 
-            <section id="locations" class="page-section py-16 bg-white px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-12">Our Network Presence</h2>
-                    <div class="max-w-4xl mx-auto">
-                         <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 md:p-8">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Jersey Data Center (TEB-2)</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section id="locations" class="page-section py-16 bg-white px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Our Network Presence</h2> <div class="max-w-4xl mx-auto">
+                         <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 md:p-8"> <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Jersey Data Center (TEB-2)</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b pb-2">Background</h4>
-                                    <ul class="space-y-2 text-sm text-gray-600">
-                                        <li><strong>Location:</strong> Secaucus, New Jersey</li>
+                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b border-gray-300 pb-2">Background</h4> <ul class="space-y-2 text-sm text-gray-600"> <li><strong>Location:</strong> Secaucus, New Jersey</li>
                                         <li><strong>Built:</strong> 1999</li>
                                         <li><strong>Size:</strong> 6000 SF</li>
                                         <li><strong>Building:</strong> 2 Floors</li>
                                         <li><strong>Parking:</strong> Free On-site</li>
                                         <li><strong>Proximity:</strong> ~10 minutes from NYC</li>
                                     </ul>
-                                    <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Details</h4>
-                                     <ul class="space-y-2 text-sm text-gray-600">
-                                        <li><strong>Class:</strong> Tier 2 Facility</li>
+                                    <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b border-gray-300 pb-2">Details</h4> <ul class="space-y-2 text-sm text-gray-600"> <li><strong>Class:</strong> Tier 2 Facility</li>
                                         <li><strong>Flooring:</strong> Raised Floors</li>
                                         <li><strong>Power Capacity:</strong> 4000AMP</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b pb-2">Features</h4>
-                                    <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> 24/7 Access</li>
+                                    <h4 class="text-lg font-semibold text-gray-700 mb-3 border-b border-gray-300 pb-2">Features</h4> <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4"> <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> 24/7 Access</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> 24/7 Staff On-site</li>
                                         <li class="flex items-center"><i class="far fa-square dc-feature-icon"></i> 24/7 Security Guard(s)</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Remote Hands</li>
@@ -426,9 +267,7 @@
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Alarm System</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Air Conditioning</li>
                                     </ul>
-                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Services</h4>
-                                     <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-                                        <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Suite/Room Rental</li>
+                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b border-gray-300 pb-2">Services</h4> <ul class="space-y-1.5 text-sm text-gray-600 grid grid-cols-1 sm:grid-cols-2 gap-x-4"> <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Suite/Room Rental</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Cage Rental</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Footprint Rental</li>
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Rack Rental</li>
@@ -437,9 +276,7 @@
                                         <li class="flex items-center"><i class="far fa-check-square dc-feature-icon"></i> Virtual Servers</li>
                                         <li class="flex items-center"><i class="far fa-square dc-feature-icon"></i> Office Space</li>
                                      </ul>
-                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b pb-2">Connectivity</h4>
-                                     <p class="text-sm text-gray-600">
-                                        8Gbps redundant connectivity (100/1000 Mbps delivery). Carriers include Level3, XO, Abovenet, Sprint, Tiscali. Free cross-connects available.
+                                     <h4 class="text-lg font-semibold text-gray-700 mt-6 mb-3 border-b border-gray-300 pb-2">Connectivity</h4> <p class="text-sm text-gray-600"> 8Gbps redundant connectivity (100/1000 Mbps delivery). Carriers include Level3, XO, Abovenet, Sprint, Tiscali. Free cross-connects available.
                                      </p>
                                 </div>
                             </div>
@@ -448,115 +285,58 @@
                 </div>
             </section>
 
-            <section id="docs" class="page-section py-16 bg-gray-100 px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-12">Documentation</h2>
-                    <div class="max-w-4xl mx-auto">
+            <section id="docs" class="page-section py-16 bg-gray-100 px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Documentation</h2> <div class="max-w-4xl mx-auto">
                         <div id="docs-list-container">
-                            <p class="text-center text-gray-500">Loading docs...</p>
-                        </div>
+                            <p class="text-center text-gray-500">Loading docs...</p> </div>
                         <div id="docs-pagination" class="pagination-controls"></div>
                     </div>
                 </div>
             </section>
 
-            <section id="blog" class="page-section py-16 bg-white px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-12">Latest News & Updates</h2>
-                    <div class="max-w-4xl mx-auto">
+            <section id="blog" class="page-section py-16 bg-white px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Latest News & Updates</h2> <div class="max-w-4xl mx-auto">
                         <div id="blog-posts-container">
-                            <p class="text-center text-gray-500">Loading posts...</p>
-                        </div>
+                            <p class="text-center text-gray-500">Loading posts...</p> </div>
                         <div id="blog-pagination" class="pagination-controls"></div>
                     </div>
                 </div>
             </section>
 
-            <section id="status" class="page-section py-16 bg-gray-100 px-6">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-12">System Status</h2>
-                    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-4">
-                            <span class="font-semibold text-gray-700">Control Panel</span>
-                            <span id="status-vdc" class="font-semibold text-gray-700">
-                                <span class="status-dot status-checking"></span>Checking...
+            <section id="status" class="page-section py-16 bg-gray-100 px-6"> <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">System Status</h2> <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200"> <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-4"> <span class="font-semibold text-gray-700">Control Panel</span> <span id="status-vdc" class="font-semibold text-gray-700"> <span class="status-dot status-checking"></span>Checking...
                             </span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="font-semibold text-gray-700">Billing Panel</span>
-                            <span id="status-billing" class="font-semibold text-gray-700">
-                                <span class="status-dot status-checking"></span>Checking...
+                            <span class="font-semibold text-gray-700">Billing Panel</span> <span id="status-billing" class="font-semibold text-gray-700"> <span class="status-dot status-checking"></span>Checking...
                             </span>
                         </div>
                         <p class="text-xs text-gray-500 mt-4">Status checks are performed from your browser. Status
-                            indicates web server reachability (HTTPS).</p>
-                    </div>
+                            indicates web server reachability (HTTPS).</p> </div>
                 </div>
             </section>
-        </div> <section id="full-post-view" class="page-section hidden-section py-16 bg-white px-6">
-            <div class="container mx-auto max-w-3xl content-view">
-                </div>
+        </div> <section id="full-post-view" class="page-section hidden-section py-16 bg-white px-6"> <div class="container mx-auto max-w-3xl content-view text-gray-700"> </div>
         </section>
 
-        <section id="full-doc-view" class="page-section hidden-section py-16 bg-white px-6">
-            <div class="container mx-auto max-w-3xl content-view">
-                 </div>
+        <section id="full-doc-view" class="page-section hidden-section py-16 bg-white px-6"> <div class="container mx-auto max-w-3xl content-view text-gray-700"> </div>
         </section>
 
-        <section id="privacy-policy" class="page-section hidden-section py-16 bg-white px-6">
-             <div class="container mx-auto max-w-3xl content-view"> <h2>Privacy Policy</h2>
-                <p class="text-center text-sm text-gray-500 mb-6">Last Updated: April 16, 2025</p>
-                <p class="disclaimer"><strong>Disclaimer:</strong> This is a template Privacy Policy and may not be legally sufficient for your specific needs. Consult with a legal professional.</p>
-                <h3>1. Introduction</h3> <p>SkyVPS360 ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website skyvps360.xyz and use our services.</p>
-                <h3>2. Information We Collect</h3> <p>We may collect personal information that you voluntarily provide to us when registering an account, placing an order, or contacting us. This may include:</p> <ul><li>Name</li><li>Email address</li><li>Billing address</li><li>IP address</li><li>Payment information (processed securely by our payment gateway, not stored by us directly)</li></ul> <p>We also collect non-personal information automatically as you navigate the site, such as usage details and technical data (browser type, operating system).</p>
-                <h3>3. How We Use Your Information</h3> <p>We use the information we collect to:</p> <ul><li>Provide, operate, and maintain our services.</li><li>Process your transactions and manage your orders.</li><li>Improve, personalize, and expand our services.</li><li>Communicate with you, including for customer service and support.</li><li>Send you technical notices, updates, security alerts, and administrative messages.</li><li>Prevent fraudulent transactions and abuse.</li></ul>
-                <h3>4. Disclosure of Your Information</h3> <p>We do not sell or rent your personal information. We may disclose your information:</p> <ul><li>To third-party service providers that perform services for us (e.g., payment processing, data analysis, email delivery).</li><li>To comply with legal obligations or respond to lawful requests from public authorities.</li><li>To protect the rights, property, or safety of SkyVPS360, our customers, or others.</li></ul>
-                <h3>5. Security of Your Information</h3> <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable.</p>
-                <h3>6. Data Retention</h3> <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
-                <h3>7. Your Rights (Access, Correction, Deletion)</h3> <p>Depending on your location, you may have rights regarding your personal information, such as the right to access, correct, or delete the data we hold about you. Please contact us to exercise these rights.</p>
-                <h3>8. Cookies and Tracking Technologies</h3> <p>We may use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
-                <h3>9. Policy for Children</h3> <p>Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13.</p>
-                <h3>10. International Transfers</h3> <p>Your information, including personal data, may be transferred to — and maintained on — computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ.</p>
-                <h3>11. Changes to This Privacy Policy</h3> <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
-                <h3>12. Contact Us</h3> <p>If you have any questions about this Privacy Policy, please contact us via our support channels.</p>
-                <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Home</a>
-            </div>
+        <section id="privacy-policy" class="page-section hidden-section py-16 bg-white px-6"> <div class="container mx-auto max-w-3xl content-view text-gray-700"> <h2 class="text-gray-900">Privacy Policy</h2> <p class="text-center text-sm text-gray-500 mb-6">Last Updated: April 16, 2025</p> <p class="disclaimer"><strong>Disclaimer:</strong> This is a template Privacy Policy and may not be legally sufficient for your specific needs. Consult with a legal professional.</p>
+                 <h3 class="text-gray-900 border-gray-300">1. Introduction</h3> <p>SkyVPS360 ("we", "us", "our") is committed to protecting your privacy...</p> <h3 class="text-gray-900 border-gray-300">2. Information We Collect</h3> <p>We may collect personal information...</p> <ul><li>Name</li><li>Email address</li><li>Billing address</li><li>IP address</li><li>Payment information...</li></ul> <p>We also collect non-personal information...</p> <h3 class="text-gray-900 border-gray-300">3. How We Use Your Information</h3> <p>We use the information we collect to:</p> <ul><li>Provide, operate, and maintain our services.</li><li>Process your transactions...</li><li>Improve, personalize...</li><li>Communicate with you...</li><li>Send you technical notices...</li><li>Prevent fraudulent transactions...</li></ul> <h3 class="text-gray-900 border-gray-300">4. Disclosure of Your Information</h3> <p>We do not sell or rent... We may disclose your information:</p> <ul><li>To third-party service providers...</li><li>To comply with legal obligations...</li><li>To protect the rights...</li></ul> <h3 class="text-gray-900 border-gray-300">5. Security of Your Information</h3> <p>We use administrative, technical, and physical security measures...</p> <h3 class="text-gray-900 border-gray-300">6. Data Retention</h3> <p>We will retain your personal information...</p> <h3 class="text-gray-900 border-gray-300">7. Your Rights (Access, Correction, Deletion)</h3> <p>Depending on your location, you may have rights...</p> <h3 class="text-gray-900 border-gray-300">8. Cookies and Tracking Technologies</h3> <p>We may use cookies...</p> <h3 class="text-gray-900 border-gray-300">9. Policy for Children</h3> <p>Our services are not directed to individuals under the age of 13...</p> <h3 class="text-gray-900 border-gray-300">10. International Transfers</h3> <p>Your information, including personal data, may be transferred...</p> <h3 class="text-gray-900 border-gray-300">11. Changes to This Privacy Policy</h3> <p>We may update this Privacy Policy...</p> <h3 class="text-gray-900 border-gray-300">12. Contact Us</h3> <p>If you have any questions...</p> <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-300 font-medium">&larr; Back to Home</a> </div>
         </section>
 
-        <section id="terms-of-service" class="page-section hidden-section py-16 bg-white px-6">
-            <div class="container mx-auto max-w-3xl content-view"> <h2>Terms of Service</h2>
-                 <p class="text-center text-sm text-gray-500 mb-6">Last Updated: April 16, 2025</p>
-                 <p class="disclaimer"><strong>Disclaimer:</strong> This is a template Terms of Service and may not be legally sufficient for your specific needs. Consult with a legal professional.</p>
-                 <h3>1. Acceptance of Terms</h3> <p>By accessing or using the services provided by SkyVPS360 ("we", "us", "our"), you agree to be bound by these Terms of Service ("Terms") and our Privacy Policy. If you disagree with any part of the terms, you may not access the service.</p>
-                 <h3>2. Service Description</h3> <p>SkyVPS360 provides Virtual Private Server (VPS) hosting services, primarily focused on large storage KVM plans, utilizing the VirtFusion control panel.</p>
-                 <h3>3. Account Registration and Security</h3> <ul><li>You must provide accurate and complete information during registration.</li><li>You are responsible for maintaining the confidentiality of your account password and for all activities that occur under your account.</li><li>You agree to notify us immediately of any unauthorized use of your account.</li></ul>
-                 <h3>4. Acceptable Use Policy (AUP)</h3> <p>You agree not to use the service for any illegal or prohibited activities, including but not limited to:</p> <ul><li>Hosting or distributing copyrighted material without permission.</li><li>Sending unsolicited emails (spam).</li><li>Engaging in network abuse (e.g., DDoS attacks, port scanning).</li><li>Hosting phishing sites or malware.</li><li>Running resource-intensive processes that negatively impact shared infrastructure (specific limits may apply per plan).</li><li>Any activity that violates local, state, national, or international law.</li></ul> <p>Violation of the AUP may result in suspension or termination of your service without notice.</p>
-                 <h3>5. Payment, Billing, and Renewal</h3> <ul><li>Services are billed on a recurring basis (e.g., monthly, annually) as selected during checkout.</li><li>Payment is due in advance of the service period.</li><li>Failure to pay may result in suspension or termination of services.</li><li>Services will automatically renew unless cancelled prior to the renewal date through the client area.</li><li>Refund policies, if any, will be specified separately (e.g., within a certain timeframe for new orders).</li></ul>
-                 <h3>6. Term and Termination</h3> <ul><li>These Terms remain in effect while you use the services.</li><li>You may terminate your service at any time via the client area.</li><li>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms or AUP.</li><li>Upon termination, your right to use the service will cease immediately, and data may be permanently deleted.</li></ul>
-                 <h3>7. Resource Usage</h3> <p>You agree to utilize server resources (CPU, RAM, Disk I/O, Network Bandwidth) within the limits allocated to your chosen plan. Excessive usage may require an upgrade or lead to suspension.</p>
-                 <h3>8. Backups</h3> <p>While we may offer backup services (as specified in plan details), you are ultimately responsible for maintaining your own backups. We are not liable for data loss.</p>
-                 <h3>9. Intellectual Property</h3> <p>The Service and its original content, features, and functionality are and will remain the exclusive property of SkyVPS360 and its licensors.</p>
-                 <h3>10. Disclaimer of Warranties</h3> <p>The service is provided on an "AS IS" and "AS AVAILABLE" basis. We disclaim all warranties of any kind, whether express or implied, including fitness for a particular purpose and non-infringement.</p>
-                 <h3>11. Limitation of Liability</h3> <p>In no event shall SkyVPS360, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.</p>
-                 <h3>12. Indemnification</h3> <p>You agree to defend, indemnify and hold harmless SkyVPS360 and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.</p>
-                 <h3>13. Governing Law</h3> <p>These Terms shall be governed and construed in accordance with the laws of [Your Jurisdiction - e.g., Ontario, Canada], without regard to its conflict of law provisions.</p>
-                 <h3>14. Changes to Terms</h3> <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will provide notice of material changes.</p>
-                 <h3>15. Contact Information</h3> <p>Questions about the Terms of Service should be sent to us via our support channels.</p>
-                 <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Home</a>
-            </div>
+        <section id="terms-of-service" class="page-section hidden-section py-16 bg-white px-6"> <div class="container mx-auto max-w-3xl content-view text-gray-700"> <h2 class="text-gray-900">Terms of Service</h2> <p class="text-center text-sm text-gray-500 mb-6">Last Updated: April 16, 2025</p> <p class="disclaimer"><strong>Disclaimer:</strong> This is a template Terms of Service...</p>
+                 <h3 class="text-gray-900 border-gray-300">1. Acceptance of Terms</h3> <p>By accessing or using the services...</p> <h3 class="text-gray-900 border-gray-300">2. Service Description</h3> <p>SkyVPS360 provides Virtual Private Server...</p> <h3 class="text-gray-900 border-gray-300">3. Account Registration and Security</h3> <ul><li>You must provide accurate...</li><li>You are responsible...</li><li>You agree to notify us...</li></ul> <h3 class="text-gray-900 border-gray-300">4. Acceptable Use Policy (AUP)</h3> <p>You agree not to use the service...</p> <ul><li>Hosting or distributing copyrighted material...</li><li>Sending unsolicited emails...</li><li>Engaging in network abuse...</li><li>Hosting phishing sites...</li><li>Running resource-intensive processes...</li><li>Any activity that violates...</li></ul> <p>Violation of the AUP may result...</p> <h3 class="text-gray-900 border-gray-300">5. Payment, Billing, and Renewal</h3> <ul><li>Services are billed...</li><li>Payment is due...</li><li>Failure to pay...</li><li>Services will automatically renew...</li><li>Refund policies...</li></ul> <h3 class="text-gray-900 border-gray-300">6. Term and Termination</h3> <ul><li>These Terms remain in effect...</li><li>You may terminate...</li><li>We may terminate or suspend...</li><li>Upon termination...</li></ul> <h3 class="text-gray-900 border-gray-300">7. Resource Usage</h3> <p>You agree to utilize server resources...</p> <h3 class="text-gray-900 border-gray-300">8. Backups</h3> <p>While we may offer backup services...</p> <h3 class="text-gray-900 border-gray-300">9. Intellectual Property</h3> <p>The Service and its original content...</p> <h3 class="text-gray-900 border-gray-300">10. Disclaimer of Warranties</h3> <p>The service is provided on an "AS IS"...</p> <h3 class="text-gray-900 border-gray-300">11. Limitation of Liability</h3> <p>In no event shall SkyVPS360...</p> <h3 class="text-gray-900 border-gray-300">12. Indemnification</h3> <p>You agree to defend, indemnify...</p> <h3 class="text-gray-900 border-gray-300">13. Governing Law</h3> <p>These Terms shall be governed...</p> <h3 class="text-gray-900 border-gray-300">14. Changes to Terms</h3> <p>We reserve the right...</p> <h3 class="text-gray-900 border-gray-300">15. Contact Information</h3> <p>Questions about the Terms of Service...</p> <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-300 font-medium">&larr; Back to Home</a> </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-800 text-gray-300 py-8 px-6">
-        <div class="container mx-auto text-center">
+    <footer class="bg-gray-800 text-gray-300 py-8 px-6"> <div class="container mx-auto text-center">
             <p>&copy; 2025 SkyVPS360. All Rights Reserved.</p>
-            <div class="mt-4 space-x-4 text-sm">
-                <a href="#terms-of-service" class="hover:text-white hover:underline policy-link">Terms of Service</a>
-                <span class="text-gray-500">|</span>
-                <a href="#privacy-policy" class="hover:text-white hover:underline policy-link">Privacy Policy</a>
-            </div>
-        </div>
+           <!--  <div class="mt-4 space-x-4 text-sm">
+               <a href="#terms-of-service" class="hover:text-white hover:underline policy-link">Terms of Service</a> <span class="text-gray-500">|</span>
+                <a href="#privacy-policy" class="hover:text-white hover:underline policy-link">Privacy Policy</a> </div>
+        </div>-->
     </footer>
 
     <script>
@@ -567,23 +347,21 @@
         let currentDocsPage = 1;
         let currentBlogPage = 1;
 
+        // --- DOM Elements ---
+        // Removed dark mode related elements
+
         // --- Status Check Function ---
         async function checkStatus(url, elementId) {
             const statusElement = document.getElementById(elementId);
             if (!statusElement) return;
-            // Initial state: Checking
             statusElement.innerHTML = '<span class="status-dot status-checking"></span>Checking...';
             try {
-                // Use AbortController for timeout
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
-                // Fetch HEAD request (no-cors mode might not give accurate status but avoids CORS errors for simple checks)
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
                 const response = await fetch(url, { method: 'HEAD', mode: 'no-cors', signal: controller.signal, cache: 'no-store' });
-                clearTimeout(timeoutId); // Clear timeout if fetch completes
-                // Assume online if fetch doesn't throw an error (in no-cors mode)
+                clearTimeout(timeoutId);
                 statusElement.innerHTML = '<span class="status-dot status-online"></span>Online';
             } catch (error) {
-                // Log error and set status to Offline
                 console.error(`Error checking ${url}:`, error.name === 'AbortError' ? 'Timeout' : error);
                 statusElement.innerHTML = '<span class="status-dot status-offline"></span>Offline';
             }
@@ -604,14 +382,28 @@
                 snippet: "Learn the key differences between NAT IPv4, included with our plans, and traditional dedicated IPv4 addresses.",
                 slug: "nat-vs-dedicated-ipv4",
                 content: `<h3>NAT IPv4 Explained</h3><p>Network Address Translation (NAT) allows multiple devices on a private network to share a single public IP address. In our case, your VPS shares a public IPv4 address with other VPS instances on the same host node.</p><p class="mt-4"><strong>How it works:</strong> We provide you with 20 pre-allocated ports on the shared public IPv4. When external traffic tries to reach one of your allocated ports, the host node directs it to your VPS's private internal IP address. Outgoing traffic from your VPS appears to originate from the shared public IPv4.</p><h4>Pros:</h4><ul><li>Cost-effective: Significantly cheaper than dedicated IPs due to IPv4 scarcity.</li><li>Sufficient for many use cases: Hosting websites, game servers (if the game supports specific ports), VPNs, proxies, etc.</li></ul><h4>Cons:</h4><ul><li>Limited Ports: You can only host services on the allocated ports.</li><li>Not suitable for services requiring all ports (e.g., some email server configurations).</li><li>Shared reputation: The IP's reputation is shared among users.</li></ul><h3>Dedicated IPv4</h3><p>A dedicated IPv4 address is assigned exclusively to your VPS. All ports are available to you, and the IP's reputation is solely yours.</p><h4>Pros:</h4><ul><li>Full Port Access: Host any service on any port.</li><li>Exclusive IP Reputation.</li></ul><h4>Cons:</h4><ul><li>Higher Cost: Due to the global shortage and cost of IPv4 addresses.</li><li>Often unnecessary: Many applications work perfectly fine with NAT IPv4.</li></ul><p class="mt-4">Our storage plans utilize NAT IPv4 to keep costs low while providing excellent connectivity via the included ports and the dedicated IPv6 subnet.</p>`
-            }//,
-            //{
-            //    title: "Scheduled Maintenance Window",
-            //    date: "March 28, 2025",
-            //    snippet: "Announcing a scheduled maintenance window for network upgrades in our New Jersey data center.",
-            //    slug: "maintenance-nj-mar2025",
-            //    content: `<p>Please be advised that we have scheduled a maintenance window to perform network hardware upgrades in our New Jersey (TEB-2) data center.</p><p class="mt-4"><strong>Date:</strong> April 2, 2025<br><strong>Time:</strong> 01:00 AM - 04:00 AM EDT (GMT-4)</p><p class="mt-4"><strong>Impact:</strong> During this window, customers with services hosted in New Jersey may experience intermittent network connectivity loss, potentially lasting up to 30 minutes cumulatively. We will work to minimize downtime.</p><p class="mt-4">These upgrades are necessary to enhance network capacity and reliability. We apologize for any inconvenience this may cause.</p>`
-            // }
+            },//
+             //{
+             //   title: "Scheduled Maintenance Window",
+             //   date: "March 28, 2025",
+             //   snippet: "Announcing a scheduled maintenance window for network upgrades in our New Jersey data center.",
+             //   slug: "maintenance-nj-mar2025",
+             //   content: `<p>Please be advised that we have scheduled a maintenance window to perform network hardware upgrades in our New Jersey (TEB-2) data center.</p><p class="mt-4"><strong>Date:</strong> April 2, 2025<br><strong>Time:</strong> 01:00 AM - 04:00 AM EDT (GMT-4)</p><p class="mt-4"><strong>Impact:</strong> During this window, customers with services hosted in New Jersey may experience intermittent network connectivity loss, potentially lasting up to 30 minutes cumulatively. We will work to minimize downtime.</p><p class="mt-4">These upgrades are necessary to enhance network capacity and reliability. We apologize for any inconvenience this may cause.</p>`
+            //},
+             {
+                title: "Introducing IPv6 Connectivity",
+                date: "March 15, 2025",
+                snippet: "All our VPS plans now come with a dedicated /80 IPv6 subnet, preparing your services for the future.",
+                slug: "ipv6-launch",
+                content: `<p>We're excited to announce that all SkyVPS360 KVM Storage plans now include a dedicated /80 IPv6 subnet at no additional cost!</p>
+                          <p class="mt-4">While IPv4 remains dominant, the internet is transitioning to IPv6. Providing native IPv6 connectivity ensures your applications and services are future-proof and can reach the growing IPv6-only parts of the internet.</p>
+                          <h3>What is an /80 Subnet?</h3>
+                          <p>An /80 subnet provides your assigned network block with an enormous number of IPv6 addresses (2^(128-80) = 2^48, or over 281 trillion addresses). This large block size allows for flexible network configuration.</p>
+                          <p class="mt-2">While the block itself is huge, the number of addresses you can actively configure or manage via the control panel (like VirtFusion) might be subject to practical limits (e.g., 50 or more, depending on the provider's setup). However, this still enables assigning unique IPv6 addresses to different services or containers running on your VPS if needed.</p>
+                          <h3>Configuration</h3>
+                          <p>Most modern Linux distributions will automatically configure an IPv6 address using SLAAC (Stateless Address Autoconfiguration) if the network environment provides router advertisements. You can typically verify your IPv6 address using <code>ip addr show</code> or <code>ifconfig</code>.</p>
+                          <p class="mt-4">This addition complements the included NAT IPv4 access, offering a robust and versatile connectivity solution for your hosting needs.</p>`
+            }
         ];
 
         // --- Docs Article Data ---
@@ -799,10 +591,11 @@ network:
       dhcp4: true # Or false if setting static IPv4
       dhcp6: false # Disable SLAAC if setting static IPv6
       addresses:
-        - YOUR_STATIC_IPV6_ADDRESS/80 # e.g., 2001:db8:1234:abcd::10/80
+        - YOUR_STATIC_IPV6_ADDRESS/80 # e.g., 2604:a00:3:1223:44::a/80
       gateway6: GATEWAY_IPV6_ADDRESS
       nameservers:
-          addresses: [2001:4860:4860::8888, 2001:4860:4860::8844] # Google Public DNS IPv6</code></pre>
+          # Google Public DNS IPv6
+          addresses: [2001:4860:4860::8888, 2001:4860:4860::8844]</code></pre>
                     <p class="text-xs text-gray-500">You would need the correct Gateway IPv6 address from support or documentation if configuring statically. SLAAC is generally easier.</p>
                     <h4>Firewall Considerations</h4>
                     <p>Remember to configure your firewall (e.g., UFW or iptables/ip6tables) to allow necessary incoming IPv6 traffic just as you do for IPv4.</p>
@@ -818,11 +611,7 @@ sudo ufw allow https/tcp</code></pre>
 
         /**
          * Renders pagination controls.
-         * @param {string} containerId - The ID of the div to place controls in.
-         * @param {number} totalItems - Total number of items to paginate.
-         * @param {number} currentPage - The currently active page (1-based).
-         * @param {number} itemsPerPage - How many items are shown per page.
-         * @param {function} changePageCallback - Function to call when a page button is clicked. It receives the new page number.
+         * Styles updated for dark mode via classes on the buttons themselves.
          */
         function renderPaginationControls(containerId, totalItems, currentPage, itemsPerPage, changePageCallback) {
             const paginationContainer = document.getElementById(containerId);
@@ -831,28 +620,31 @@ sudo ufw allow https/tcp</code></pre>
             const totalPages = Math.ceil(totalItems / itemsPerPage);
             paginationContainer.innerHTML = ''; // Clear previous controls
 
-            // Don't show pagination if there's only one page or less
-            if (totalPages <= 1) {
-                return;
-            }
+            if (totalPages <= 1) return;
 
             let paginationHTML = '';
 
             // Previous Button
             paginationHTML += `
                 <button
-                    class="pagination-button"
+                    class="pagination-button px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 rounded-md text-sm transition-colors duration-200
+                           ${currentPage === 1
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-gray-100'}"
                     ${currentPage === 1 ? 'disabled' : ''}
                     onclick="${changePageCallback.name}(${currentPage - 1})">
                     &larr; Prev
                 </button>
             `;
 
-            // Page Number Buttons (simplified for brevity, could add ellipsis for many pages)
+            // Page Number Buttons
             for (let i = 1; i <= totalPages; i++) {
                 paginationHTML += `
                     <button
-                        class="pagination-button ${i === currentPage ? 'active' : ''}"
+                        class="pagination-button px-4 py-2 mx-1 border border-gray-300 rounded-md text-sm transition-colors duration-200
+                               ${i === currentPage
+                                ? 'bg-blue-600 text-white border-blue-600 cursor-default'
+                                : 'bg-white text-gray-700 hover:bg-gray-100'}"
                         onclick="${changePageCallback.name}(${i})">
                         ${i}
                     </button>
@@ -862,7 +654,10 @@ sudo ufw allow https/tcp</code></pre>
             // Next Button
             paginationHTML += `
                 <button
-                    class="pagination-button"
+                    class="pagination-button px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 rounded-md text-sm transition-colors duration-200
+                           ${currentPage === totalPages
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-gray-100'}"
                     ${currentPage === totalPages ? 'disabled' : ''}
                     onclick="${changePageCallback.name}(${currentPage + 1})">
                     Next &rarr;
@@ -872,62 +667,48 @@ sudo ufw allow https/tcp</code></pre>
             paginationContainer.innerHTML = paginationHTML;
         }
 
-        /**
-         * Changes the current page for the blog list and re-renders.
-         * @param {number} newPage - The new page number to display.
-         */
+        /** Changes the current page for the blog list and re-renders. */
         function changeBlogPage(newPage) {
             const totalPages = Math.ceil(blogPosts.length / ITEMS_PER_PAGE);
-            // Ensure newPage is within valid bounds
             if (newPage >= 1 && newPage <= totalPages) {
                 currentBlogPage = newPage;
-                renderBlogPostsList(); // Re-render with the new page
-                // Optional: Scroll to the top of the blog section after page change
+                renderBlogPostsList();
                 document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        /**
-         * Changes the current page for the docs list and re-renders.
-         * @param {number} newPage - The new page number to display.
-         */
+        /** Changes the current page for the docs list and re-renders. */
         function changeDocsPage(newPage) {
             const totalPages = Math.ceil(docsArticles.length / ITEMS_PER_PAGE);
-             // Ensure newPage is within valid bounds
             if (newPage >= 1 && newPage <= totalPages) {
                 currentDocsPage = newPage;
-                renderDocsList(); // Re-render with the new page
-                // Optional: Scroll to the top of the docs section after page change
+                renderDocsList();
                 document.getElementById('docs')?.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
 
-        /**
-         * Renders the list of blog posts for the current page.
-         */
+        /** Renders the list of blog posts for the current page. */
         function renderBlogPostsList() {
              const container = document.getElementById('blog-posts-container');
             if (!container) return;
 
             if (!blogPosts || blogPosts.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500">No blog posts available.</p>';
-                document.getElementById('blog-pagination').innerHTML = ''; // Clear pagination
+                document.getElementById('blog-pagination').innerHTML = '';
                 return;
             }
 
-            // Calculate items for the current page
             const startIndex = (currentBlogPage - 1) * ITEMS_PER_PAGE;
             const endIndex = startIndex + ITEMS_PER_PAGE;
             const postsToShow = blogPosts.slice(startIndex, endIndex);
 
             let postsHTML = '';
             postsToShow.forEach(post => {
-                // Note: The date property might not exist if moved from docs, handle gracefully
                 const displayDate = post.date ? `<p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p>` : '';
-                // *** FIXED LINE BELOW: Removed comment from inside template literal ***
+                // Apply dark mode classes to the card
                 postsHTML += `
-                    <article class="list-item-card">
+                    <article class="list-item-card bg-white border border-gray-200 rounded-lg p-6 mb-6 shadow-sm">
                         <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
                             <a href="#blog/${post.slug || '#'}" class="post-link">${post.title}</a>
                         </h3>
@@ -938,65 +719,55 @@ sudo ufw allow https/tcp</code></pre>
                 `;
             });
             container.innerHTML = postsHTML;
-
-            // Render pagination controls
             renderPaginationControls('blog-pagination', blogPosts.length, currentBlogPage, ITEMS_PER_PAGE, changeBlogPage);
         }
 
-        /**
-         * Renders the full content of a single blog post.
-         * @param {object} post - The blog post object to render.
-         */
+        /** Renders the full content of a single blog post. */
         function renderFullPost(post) {
              const container = document.getElementById('full-post-view');
-             const viewContainer = container.querySelector('.content-view');
+             const viewContainer = container.querySelector('.content-view'); // Target the inner container
             if (!container || !viewContainer) return;
 
             if (!post) {
                 viewContainer.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
                 return;
             }
-            // Note: The date property might not exist if moved from docs, handle gracefully
             const displayDate = post.date ? `<p class="text-center text-sm text-gray-500 mb-6">Published on ${post.date}</p>` : '';
-            // Render the post content within the content-view div
+            // Apply dark mode classes to the wrapper div inside content-view
             viewContainer.innerHTML = `
                 <article>
-                    <h2>${post.title}</h2>
+                    <h2 class="text-gray-900">${post.title}</h2>
                     ${displayDate}
                     <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">${post.content}</div>
-                    <a href="#blog" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Blog List</a>
+                    <a href="#blog" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-300 font-medium">&larr; Back to Blog List</a>
                 </article>
             `;
-            // Attach listener to the back link *within this specific view*
             const backLink = viewContainer.querySelector('a.policy-back-link');
             if(backLink) {
                 backLink.addEventListener('click', handleBackLinkClick);
             }
         }
 
-        /**
-         * Renders the list of documentation articles for the current page.
-         */
+        /** Renders the list of documentation articles for the current page. */
          function renderDocsList() {
              const container = document.getElementById('docs-list-container');
             if (!container) return;
 
             if (!docsArticles || docsArticles.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500">No documentation available.</p>';
-                 document.getElementById('docs-pagination').innerHTML = ''; // Clear pagination
+                 document.getElementById('docs-pagination').innerHTML = '';
                 return;
             }
 
-            // Calculate items for the current page
             const startIndex = (currentDocsPage - 1) * ITEMS_PER_PAGE;
             const endIndex = startIndex + ITEMS_PER_PAGE;
             const docsToShow = docsArticles.slice(startIndex, endIndex);
 
-
             let docsHTML = '';
             docsToShow.forEach(doc => {
+                 // Apply dark mode classes to the card
                 docsHTML += `
-                    <article class="list-item-card">
+                    <article class="list-item-card bg-white border border-gray-200 rounded-lg p-6 mb-6 shadow-sm">
                         <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
                             <a href="#docs/${doc.slug || '#'}" class="doc-link">${doc.title}</a>
                         </h3>
@@ -1005,33 +776,27 @@ sudo ufw allow https/tcp</code></pre>
                 `;
             });
             container.innerHTML = docsHTML;
-
-             // Render pagination controls
             renderPaginationControls('docs-pagination', docsArticles.length, currentDocsPage, ITEMS_PER_PAGE, changeDocsPage);
         }
 
-        /**
-         * Renders the full content of a single documentation article.
-         * @param {object} doc - The documentation article object to render.
-         */
+        /** Renders the full content of a single documentation article. */
         function renderFullDoc(doc) {
              const container = document.getElementById('full-doc-view');
-             const viewContainer = container.querySelector('.content-view');
+             const viewContainer = container.querySelector('.content-view'); // Target the inner container
             if (!container || !viewContainer) return;
 
             if (!doc) {
                 viewContainer.innerHTML = '<p class="text-center text-red-500">Error: Document not found.</p>';
                 return;
             }
-             // Render the doc content within the content-view div
+             // Apply dark mode classes to the wrapper div inside content-view
             viewContainer.innerHTML = `
                 <article>
-                    <h2>${doc.title}</h2>
+                    <h2 class="text-gray-900">${doc.title}</h2>
                     <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">${doc.content}</div>
-                    <a href="#docs" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Docs List</a>
+                    <a href="#docs" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-300 font-medium">&larr; Back to Docs List</a>
                 </article>
             `;
-             // Attach listener to the back link *within this specific view*
             const backLink = viewContainer.querySelector('a.policy-back-link');
             if(backLink) {
                  backLink.addEventListener('click', handleBackLinkClick);
@@ -1049,6 +814,9 @@ sudo ufw allow https/tcp</code></pre>
             });
         }
 
+        // --- Removed Dark Mode Logic ---
+
+
         // --- Router (Handles Navigation and Content Views) ---
         const mainPageSectionsDiv = document.getElementById('main-page-sections');
         const fullPostViewSection = document.getElementById('full-post-view');
@@ -1057,178 +825,124 @@ sudo ufw allow https/tcp</code></pre>
         const termsOfServiceSection = document.getElementById('terms-of-service');
 
         function handleRouteChange() {
-            const hash = window.location.hash || '#hero'; // Default to hero if no hash
+            const hash = window.location.hash || '#hero';
             const blogPostMatch = hash.match(/^#blog\/(.+)/);
             const docArticleMatch = hash.match(/^#docs\/(.+)/);
 
-             // Close mobile menu on navigation
              if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                  mobileMenu.classList.add('hidden');
              }
 
-            // Hide all full-page views initially
             fullPostViewSection?.classList.add('hidden-section');
             fullDocViewSection?.classList.add('hidden-section');
             privacyPolicySection?.classList.add('hidden-section');
             termsOfServiceSection?.classList.add('hidden-section');
-            // Show the main sections container by default
             mainPageSectionsDiv?.classList.remove('hidden-section');
 
-            // --- Routing Logic ---
             if (blogPostMatch) {
-                // --- View Full Blog Post ---
                 const slug = blogPostMatch[1];
                 const post = blogPosts.find(p => p.slug === slug);
-                mainPageSectionsDiv?.classList.add('hidden-section'); // Hide main sections
-                fullPostViewSection?.classList.remove('hidden-section'); // Show post view
-                renderFullPost(post);
-                window.scrollTo(0, 0); // Scroll to top
+                mainPageSectionsDiv?.classList.add('hidden-section');
+                fullPostViewSection?.classList.remove('hidden-section');
+                renderFullPost(post); // Renders content inside the view
+                window.scrollTo(0, 0);
 
             } else if (docArticleMatch) {
-                 // --- View Full Doc Article ---
                  const slug = docArticleMatch[1];
                  const doc = docsArticles.find(d => d.slug === slug);
-                 mainPageSectionsDiv?.classList.add('hidden-section'); // Hide main sections
-                 fullDocViewSection?.classList.remove('hidden-section'); // Show doc view
-                 renderFullDoc(doc);
-                 window.scrollTo(0, 0); // Scroll to top
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 fullDocViewSection?.classList.remove('hidden-section');
+                 renderFullDoc(doc); // Renders content inside the view
+                 window.scrollTo(0, 0);
 
             } else if (hash === '#privacy-policy') {
-                 // --- View Privacy Policy ---
-                 mainPageSectionsDiv?.classList.add('hidden-section'); // Hide main sections
-                 privacyPolicySection?.classList.remove('hidden-section'); // Show privacy policy
-                 window.scrollTo(0, 0); // Scroll to top
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 privacyPolicySection?.classList.remove('hidden-section');
+                 window.scrollTo(0, 0);
 
             } else if (hash === '#terms-of-service') {
-                 // --- View Terms of Service ---
-                 mainPageSectionsDiv?.classList.add('hidden-section'); // Hide main sections
-                 termsOfServiceSection?.classList.remove('hidden-section'); // Show ToS
-                 window.scrollTo(0, 0); // Scroll to top
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 termsOfServiceSection?.classList.remove('hidden-section');
+                 window.scrollTo(0, 0);
 
             } else {
-                 // --- View Main Page Section (Hero, Plans, Features, Docs List, Blog List, etc.) ---
-                 // Ensure all full-page views are hidden (redundant but safe)
                  privacyPolicySection?.classList.add('hidden-section');
                  termsOfServiceSection?.classList.add('hidden-section');
                  fullPostViewSection?.classList.add('hidden-section');
                  fullDocViewSection?.classList.add('hidden-section');
-                 mainPageSectionsDiv?.classList.remove('hidden-section'); // Ensure main sections are visible
+                 mainPageSectionsDiv?.classList.remove('hidden-section');
 
+                 if (hash === '#blog') currentBlogPage = 1;
+                 if (hash === '#docs') currentDocsPage = 1;
 
-                 // If navigating TO the blog or docs list, reset their page to 1
-                 if (hash === '#blog') {
-                     currentBlogPage = 1;
-                 }
-                 if (hash === '#docs') {
-                     currentDocsPage = 1;
-                 }
-
-                 // Re-render lists (pagination is handled within these)
                  renderBlogPostsList();
                  renderDocsList();
 
-                // Scroll to the target section ID if it exists
-                if (hash && hash !== '#') { // Don't scroll for empty hash
+                if (hash && hash !== '#') {
                     const targetSectionId = hash.substring(1);
                     const targetElement = document.getElementById(targetSectionId);
                     if (targetElement && mainPageSectionsDiv?.contains(targetElement)) {
-                        // Use setTimeout to ensure rendering is complete before scrolling
                          setTimeout(() => {
                             const headerOffset = document.querySelector('header')?.offsetHeight || 0;
                             const elementPosition = targetElement.getBoundingClientRect().top;
-                            // Adjust for sticky header and add a small buffer
                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-                         }, 50); // Small delay
+                            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                         }, 50);
                     } else if (hash === '#hero') {
-                         window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top for hero
+                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else if (!targetElement) {
                         console.warn(`[Router] Target element not found for hash: ${hash}.`);
-                        // Optionally scroll to top if target not found
-                        // window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 } else {
-                     // Default scroll to top if hash is just '#' or empty
                      window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
         }
 
-        /**
-         * Handles clicks on "Back" links within full view sections.
-         * Prevents default anchor behavior and uses hash change for routing.
-         * @param {Event} e - The click event object.
-         */
+        /** Handles clicks on "Back" links within full view sections. */
         function handleBackLinkClick(e) {
-             e.preventDefault(); // Prevent default anchor jump
-             const targetHash = e.target.getAttribute('href'); // Get the href (e.g., #blog, #docs)
-             if (targetHash) {
-                 window.location.hash = targetHash; // Change hash to trigger router
-             } else {
-                 window.location.hash = '#hero'; // Fallback to hero
-             }
+             e.preventDefault();
+             const targetHash = e.target.getAttribute('href');
+             window.location.hash = targetHash || '#hero';
         }
 
         // --- Event Delegation for Dynamic Content ---
-        // Instead of adding listeners to each link individually after rendering,
-        // listen on a parent container. This is more efficient.
-
         document.addEventListener('click', function(event) {
-            // Check if a nav link inside the main nav or mobile menu was clicked
             const navLink = event.target.closest('.nav-link, #mobile-menu a');
             if (navLink && navLink.getAttribute('href')?.startsWith('#')) {
-                 // Close mobile menu if open and a link inside it was clicked
                  if (mobileMenu && !mobileMenu.classList.contains('hidden') && mobileMenu.contains(navLink)) {
                     mobileMenu.classList.add('hidden');
                  }
-                 // Let the hashchange event handle the scrolling/routing
-                 // No preventDefault needed here if it's just a hash link
-                 return;
+                 return; // Let hashchange handle it
             }
 
-            // Check if a blog post link was clicked
             const postLink = event.target.closest('.post-link');
             if (postLink) {
                 const targetHash = postLink.getAttribute('href');
                 if (targetHash && targetHash.startsWith('#blog/')) {
-                    event.preventDefault(); // Prevent default jump only for post links
-                    window.location.hash = targetHash; // Trigger router
+                    event.preventDefault();
+                    window.location.hash = targetHash;
                 }
-                return; // Stop further processing
+                return;
             }
 
-            // Check if a doc link was clicked
             const docLink = event.target.closest('.doc-link');
             if (docLink) {
                 const targetHash = docLink.getAttribute('href');
                  if (targetHash && targetHash.startsWith('#docs/')) {
-                    event.preventDefault(); // Prevent default jump only for doc links
-                    window.location.hash = targetHash; // Trigger router
+                    event.preventDefault();
+                    window.location.hash = targetHash;
                  }
-                 return; // Stop further processing
+                 return;
             }
 
-             // Check if a policy link in the footer was clicked
              const policyLink = event.target.closest('.policy-link');
              if (policyLink) {
                  const targetHash = policyLink.getAttribute('href');
                  if (targetHash && (targetHash === '#privacy-policy' || targetHash === '#terms-of-service')) {
-                     event.preventDefault(); // Prevent default jump
-                     window.location.hash = targetHash; // Trigger router
+                     event.preventDefault();
+                     window.location.hash = targetHash;
                  }
-                 return; // Stop further processing
-             }
-
-            // Check if a back link was clicked (already handled by renderFullPost/Doc, but this is a fallback)
-            const backLink = event.target.closest('.policy-back-link');
-             if (backLink) {
-                 // The specific listeners in renderFullPost/Doc should handle this,
-                 // but we can add the logic here too as a safety net.
-                 handleBackLinkClick(event);
                  return;
              }
 
@@ -1237,23 +951,21 @@ sudo ufw allow https/tcp</code></pre>
 
         // --- Initial Setup ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Perform initial status checks
+            // Removed dark mode related initializations
+
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
 
-            // Add listeners for static back links (in policy sections loaded initially)
+            // Static back links (already present in HTML for policies)
              document.querySelectorAll('#privacy-policy .policy-back-link, #terms-of-service .policy-back-link').forEach(link => {
                 link.addEventListener('click', handleBackLinkClick);
              });
 
-            // Handle the initial page load route (render lists and scroll)
-            handleRouteChange();
-
-            // Listen for hash changes to handle navigation
-            window.addEventListener('hashchange', handleRouteChange);
+            handleRouteChange(); // Initial render and route handling
+            window.addEventListener('hashchange', handleRouteChange); // Handle navigation
         });
     </script>
 
 </body>
 
-</html>
+</ht
