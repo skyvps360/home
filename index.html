@@ -604,14 +604,14 @@
                 snippet: "Learn the key differences between NAT IPv4, included with our plans, and traditional dedicated IPv4 addresses.",
                 slug: "nat-vs-dedicated-ipv4",
                 content: `<h3>NAT IPv4 Explained</h3><p>Network Address Translation (NAT) allows multiple devices on a private network to share a single public IP address. In our case, your VPS shares a public IPv4 address with other VPS instances on the same host node.</p><p class="mt-4"><strong>How it works:</strong> We provide you with 20 pre-allocated ports on the shared public IPv4. When external traffic tries to reach one of your allocated ports, the host node directs it to your VPS's private internal IP address. Outgoing traffic from your VPS appears to originate from the shared public IPv4.</p><h4>Pros:</h4><ul><li>Cost-effective: Significantly cheaper than dedicated IPs due to IPv4 scarcity.</li><li>Sufficient for many use cases: Hosting websites, game servers (if the game supports specific ports), VPNs, proxies, etc.</li></ul><h4>Cons:</h4><ul><li>Limited Ports: You can only host services on the allocated ports.</li><li>Not suitable for services requiring all ports (e.g., some email server configurations).</li><li>Shared reputation: The IP's reputation is shared among users.</li></ul><h3>Dedicated IPv4</h3><p>A dedicated IPv4 address is assigned exclusively to your VPS. All ports are available to you, and the IP's reputation is solely yours.</p><h4>Pros:</h4><ul><li>Full Port Access: Host any service on any port.</li><li>Exclusive IP Reputation.</li></ul><h4>Cons:</h4><ul><li>Higher Cost: Due to the global shortage and cost of IPv4 addresses.</li><li>Often unnecessary: Many applications work perfectly fine with NAT IPv4.</li></ul><p class="mt-4">Our storage plans utilize NAT IPv4 to keep costs low while providing excellent connectivity via the included ports and the dedicated IPv6 subnet.</p>`
-            },
-            {
-                title: "Scheduled Maintenance Window",
-                date: "March 28, 2025",
-                snippet: "Announcing a scheduled maintenance window for network upgrades in our New Jersey data center.",
-                slug: "maintenance-nj-mar2025",
-                content: `<p>Please be advised that we have scheduled a maintenance window to perform network hardware upgrades in our New Jersey (TEB-2) data center.</p><p class="mt-4"><strong>Date:</strong> April 2, 2025<br><strong>Time:</strong> 01:00 AM - 04:00 AM EDT (GMT-4)</p><p class="mt-4"><strong>Impact:</strong> During this window, customers with services hosted in New Jersey may experience intermittent network connectivity loss, potentially lasting up to 30 minutes cumulatively. We will work to minimize downtime.</p><p class="mt-4">These upgrades are necessary to enhance network capacity and reliability. We apologize for any inconvenience this may cause.</p>`
-            }
+            }//,
+            //{
+            //    title: "Scheduled Maintenance Window",
+            //    date: "March 28, 2025",
+            //    snippet: "Announcing a scheduled maintenance window for network upgrades in our New Jersey data center.",
+            //    slug: "maintenance-nj-mar2025",
+            //    content: `<p>Please be advised that we have scheduled a maintenance window to perform network hardware upgrades in our New Jersey (TEB-2) data center.</p><p class="mt-4"><strong>Date:</strong> April 2, 2025<br><strong>Time:</strong> 01:00 AM - 04:00 AM EDT (GMT-4)</p><p class="mt-4"><strong>Impact:</strong> During this window, customers with services hosted in New Jersey may experience intermittent network connectivity loss, potentially lasting up to 30 minutes cumulatively. We will work to minimize downtime.</p><p class="mt-4">These upgrades are necessary to enhance network capacity and reliability. We apologize for any inconvenience this may cause.</p>`
+            // }
         ];
 
         // --- Docs Article Data ---
