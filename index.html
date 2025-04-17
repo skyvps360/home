@@ -11,14 +11,14 @@
     <meta property="og:url" content="https://skyvps360.xyz/">
     <meta property="og:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="og:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
-    <meta property="og:image" content="https://skyvps360.xyz/images/s-logo.png">
+    <meta property="og:image" content="https://skyvps360.xyz/images/logo.png">
     <meta property="og:image:alt" content="SkyVPS360 Logo">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://skyvps360.xyz/">
     <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="twitter:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
-    <meta property="twitter:image" content="https://skyvps360.xyz/images/s-logo.png">
+    <meta property="twitter:image" content="https://skyvps360.xyz/images/logo.png">
 
     <meta name="theme-color" content="#2563eb">
 
@@ -589,7 +589,7 @@
             }
         }
 
-        // --- Blog Post Data (Added more posts for pagination) ---
+        // --- Blog Post Data ---
         const blogPosts = [
              {
                 title: "Welcome to the New SkyVPS360 Frontend!",
@@ -606,13 +606,6 @@
                 content: `<h3>NAT IPv4 Explained</h3><p>Network Address Translation (NAT) allows multiple devices on a private network to share a single public IP address. In our case, your VPS shares a public IPv4 address with other VPS instances on the same host node.</p><p class="mt-4"><strong>How it works:</strong> We provide you with 20 pre-allocated ports on the shared public IPv4. When external traffic tries to reach one of your allocated ports, the host node directs it to your VPS's private internal IP address. Outgoing traffic from your VPS appears to originate from the shared public IPv4.</p><h4>Pros:</h4><ul><li>Cost-effective: Significantly cheaper than dedicated IPs due to IPv4 scarcity.</li><li>Sufficient for many use cases: Hosting websites, game servers (if the game supports specific ports), VPNs, proxies, etc.</li></ul><h4>Cons:</h4><ul><li>Limited Ports: You can only host services on the allocated ports.</li><li>Not suitable for services requiring all ports (e.g., some email server configurations).</li><li>Shared reputation: The IP's reputation is shared among users.</li></ul><h3>Dedicated IPv4</h3><p>A dedicated IPv4 address is assigned exclusively to your VPS. All ports are available to you, and the IP's reputation is solely yours.</p><h4>Pros:</h4><ul><li>Full Port Access: Host any service on any port.</li><li>Exclusive IP Reputation.</li></ul><h4>Cons:</h4><ul><li>Higher Cost: Due to the global shortage and cost of IPv4 addresses.</li><li>Often unnecessary: Many applications work perfectly fine with NAT IPv4.</li></ul><p class="mt-4">Our storage plans utilize NAT IPv4 to keep costs low while providing excellent connectivity via the included ports and the dedicated IPv6 subnet.</p>`
             },
             {
-                title: "Optimizing Storage Performance on Your VPS",
-                date: "April 5, 2025",
-                snippet: "Tips and tricks to get the most out of the network SATA storage provided with your SkyVPS360 plan.",
-                slug: "optimizing-storage",
-                content: `<h3>Tips for Storage Performance</h3><p>Our KVM Storage plans utilize reliable network-attached SATA storage, offering a balance between capacity and cost. Here are ways to optimize its performance:</p><ol class="list-decimal list-inside space-y-2 mt-4"><li><strong>Choose the Right Filesystem:</strong> For general use, <code>ext4</code> is a solid choice on Linux. <code>XFS</code> can sometimes offer benefits for very large files.</li><li><strong>Enable Caching:</strong> Ensure your OS utilizes RAM effectively for caching frequently accessed data. Linux does this automatically. Monitor available memory.</li><li><strong>Optimize I/O Scheduler:</strong> Linux offers different I/O schedulers (e.g., <code>mq-deadline</code>, <code>kyber</code>, <code>bfq</code>). For virtualized environments, <code>none</code> or <code>mq-deadline</code> often perform well. You can check and change the scheduler (e.g., <code>cat /sys/block/sda/queue/scheduler</code> and <code>echo mq-deadline > /sys/block/sda/queue/scheduler</code> - requires testing).</li><li><strong>Minimize Unnecessary Writes:</strong> Avoid excessive logging if not needed. Consider mounting temporary directories (<code>/tmp</code>) with <code>tmpfs</code> to use RAM instead of disk.</li><li><strong>Database Tuning:</strong> If running databases, tune parameters like buffer pool size (MySQL/MariaDB) or shared_buffers (PostgreSQL) to fit your available RAM and workload.</li><li><strong>Avoid Swap Thrashing:</strong> While swap is useful, excessive swapping (constant reading/writing to the swap file/partition) drastically reduces performance. Monitor swap usage (<code>free -h</code>) and consider adding more RAM if needed. Our plans allow choosing swap size, but it resides on the same storage disk.</li></ol><p class="mt-4">Remember that network storage performance can be influenced by overall network conditions and host node load, though we strive to maintain high standards.</p>`
-            },
-            {
                 title: "Scheduled Maintenance Window",
                 date: "March 28, 2025",
                 snippet: "Announcing a scheduled maintenance window for network upgrades in our New Jersey data center.",
@@ -624,11 +617,18 @@
                 date: "March 15, 2025",
                 snippet: "All our VPS plans now come with a dedicated /80 IPv6 subnet, preparing your services for the future.",
                 slug: "ipv6-launch",
-                content: `<p>We're excited to announce that all SkyVPS360 KVM Storage plans now include a dedicated /80 IPv6 subnet at no additional cost!</p> <p class="mt-4">While IPv4 remains dominant, the internet is transitioning to IPv6. Providing native IPv6 connectivity ensures your applications and services are future-proof and can reach the growing IPv6-only parts of the internet.</p> <h3>What is an /80 Subnet?</h3> <p>An /80 subnet provides you with an enormous number of IPv6 addresses (2^(128-80) = 2^48, or over 281 trillion addresses) for use within your VPS. This allows for flexible configuration and assigning unique IPv6 addresses to different services or containers running on your VPS if needed.</p> <h3>Configuration</h3> <p>Most modern Linux distributions will automatically configure IPv6 using SLAAC (Stateless Address Autoconfiguration) if the network environment provides router advertisements. You can typically verify your IPv6 address using <code>ip addr show</code> or <code>ifconfig</code>.</p> <p class="mt-4">This addition complements the included NAT IPv4 access, offering a robust and versatile connectivity solution for your hosting needs.</p>`
+                content: `<p>We're excited to announce that all SkyVPS360 KVM Storage plans now include a dedicated /80 IPv6 subnet at no additional cost!</p>
+                          <p class="mt-4">While IPv4 remains dominant, the internet is transitioning to IPv6. Providing native IPv6 connectivity ensures your applications and services are future-proof and can reach the growing IPv6-only parts of the internet.</p>
+                          <h3>What is an /80 Subnet?</h3>
+                          <p>An /80 subnet provides your assigned network block with an enormous number of IPv6 addresses (2^(128-80) = 2^48, or over 281 trillion addresses). This large block size allows for flexible network configuration.</p>
+                          <p class="mt-2">While the block itself is huge, the number of addresses you can actively configure or manage via the control panel (like VirtFusion) might be subject to practical limits (e.g., 50 or more, depending on the provider's setup). However, this still enables assigning unique IPv6 addresses to different services or containers running on your VPS if needed.</p>
+                          <h3>Configuration</h3>
+                          <p>Most modern Linux distributions will automatically configure an IPv6 address using SLAAC (Stateless Address Autoconfiguration) if the network environment provides router advertisements. You can typically verify your IPv6 address using <code>ip addr show</code> or <code>ifconfig</code>.</p>
+                          <p class="mt-4">This addition complements the included NAT IPv4 access, offering a robust and versatile connectivity solution for your hosting needs.</p>`
             }
         ];
 
-        // --- Docs Article Data (Added more articles for pagination) ---
+        // --- Docs Article Data ---
         const docsArticles = [
             {
                 title: "Getting Started with Your VPS",
@@ -722,6 +722,24 @@
                         <li><strong>Use Cases:</strong> Ideal for storing large amounts of data where cost per GB is important and extreme I/O performance isn't the primary requirement. Examples: file storage, media libraries, backups, archives, less demanding web applications, Plex servers.</li>
                     </ul>
                     <p class="mt-4">While not as fast as local NVMe SSDs for random I/O, network SATA provides a reliable and cost-effective solution for high-capacity storage needs. See the "Optimizing Storage Performance" doc for tips.</p>
+                `
+            },
+            {
+                title: "Optimizing Storage Performance on Your VPS",
+                date: "April 5, 2025",
+                slug: "optimizing-storage",
+                content: `
+                    <h3>Tips for Storage Performance</h3>
+                    <p>Our KVM Storage plans utilize reliable network-attached SATA storage, offering a balance between capacity and cost. Here are ways to optimize its performance:</p>
+                    <ol class="list-decimal list-inside space-y-2 mt-4">
+                        <li><strong>Choose the Right Filesystem:</strong> For general use, <code>ext4</code> is a solid choice on Linux. <code>XFS</code> can sometimes offer benefits for very large files.</li>
+                        <li><strong>Enable Caching:</strong> Ensure your OS utilizes RAM effectively for caching frequently accessed data. Linux does this automatically. Monitor available memory.</li>
+                        <li><strong>Optimize I/O Scheduler:</strong> Linux offers different I/O schedulers (e.g., <code>mq-deadline</code>, <code>kyber</code>, <code>bfq</code>). For virtualized environments, <code>none</code> or <code>mq-deadline</code> often perform well. You can check and change the scheduler (e.g., <code>cat /sys/block/sda/queue/scheduler</code> and <code>echo mq-deadline > /sys/block/sda/queue/scheduler</code> - requires testing).</li>
+                        <li><strong>Minimize Unnecessary Writes:</strong> Avoid excessive logging if not needed. Consider mounting temporary directories (<code>/tmp</code>) with <code>tmpfs</code> to use RAM instead of disk.</li>
+                        <li><strong>Database Tuning:</strong> If running databases, tune parameters like buffer pool size (MySQL/MariaDB) or shared_buffers (PostgreSQL) to fit your available RAM and workload.</li>
+                        <li><strong>Avoid Swap Thrashing:</strong> While swap is useful, excessive swapping (constant reading/writing to the swap file/partition) drastically reduces performance. Monitor swap usage (<code>free -h</code>) and consider adding more RAM if needed. Our plans allow choosing swap size, but it resides on the same storage disk.</li>
+                    </ol>
+                    <p class="mt-4">Remember that network storage performance can be influenced by overall network conditions and host node load, though we strive to maintain high standards.</p>
                 `
             },
             {
@@ -919,13 +937,16 @@ sudo ufw allow https/tcp</code></pre>
 
             let postsHTML = '';
             postsToShow.forEach(post => {
+                // Note: The date property might not exist if moved from docs, handle gracefully
+                const displayDate = post.date ? `<p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p>` : '';
+                // *** FIXED LINE BELOW: Removed comment from inside template literal ***
                 postsHTML += `
                     <article class="list-item-card">
                         <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
                             <a href="#blog/${post.slug || '#'}" class="post-link">${post.title}</a>
                         </h3>
-                        <p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p>
-                        <p class="text-gray-700 mb-4">${post.snippet}</p>
+                        ${displayDate}
+                        <p class="text-gray-700 mb-4">${post.snippet || ''}</p>
                         <a href="#blog/${post.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium post-link">Read More &rarr;</a>
                     </article>
                 `;
@@ -934,9 +955,6 @@ sudo ufw allow https/tcp</code></pre>
 
             // Render pagination controls
             renderPaginationControls('blog-pagination', blogPosts.length, currentBlogPage, ITEMS_PER_PAGE, changeBlogPage);
-
-            // Re-attach event listeners for the newly rendered links if needed (using event delegation is better)
-            // addPostLinkListeners(); // Example if direct listeners were used
         }
 
         /**
@@ -952,11 +970,13 @@ sudo ufw allow https/tcp</code></pre>
                 viewContainer.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
                 return;
             }
+            // Note: The date property might not exist if moved from docs, handle gracefully
+            const displayDate = post.date ? `<p class="text-center text-sm text-gray-500 mb-6">Published on ${post.date}</p>` : '';
             // Render the post content within the content-view div
             viewContainer.innerHTML = `
                 <article>
                     <h2>${post.title}</h2>
-                    <p class="text-center text-sm text-gray-500 mb-6">Published on ${post.date}</p>
+                    ${displayDate}
                     <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">${post.content}</div>
                     <a href="#blog" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Blog List</a>
                 </article>
@@ -1002,9 +1022,6 @@ sudo ufw allow https/tcp</code></pre>
 
              // Render pagination controls
             renderPaginationControls('docs-pagination', docsArticles.length, currentDocsPage, ITEMS_PER_PAGE, changeDocsPage);
-
-            // Re-attach event listeners if needed
-            // addDocLinkListeners();
         }
 
         /**
