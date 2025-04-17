@@ -8,12 +8,12 @@
     <meta name="description" content="SkyVPS360 offers robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability at affordable prices.">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.skyvps360.xyz/"> <meta property="og:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
+    <meta property="og:url" content="https://skyvps360.xyz/"> <meta property="og:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="og:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
     <meta property="og:image" content="images/s-logo.png">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.skyvps360.xyz/"> <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
+    <meta property="twitter:url" content="https://skyvps360.xyz/"> <meta property="twitter:title" content="SkyVPS360 - Cheap Large Storage VPS Hosting">
     <meta property="twitter:description" content="Robust VirtFusion-powered KVM VPS hosting with large storage options and enterprise-level reliability.">
      <meta property="twitter:image" content="images/s-logo.png">
 
@@ -66,8 +66,8 @@
         .status-online { background-color: #22c55e; /* green-500 */ }
         .status-offline { background-color: #ef4444; /* red-500 */ }
 
-        /* Styling for individual blog posts */
-        .blog-post {
+        /* Styling for list items (blog, docs) */
+        .list-item-card { /* Renamed from blog-post for broader use */
             background-color: white;
             border: 1px solid #e5e7eb; /* gray-200 */
             border-radius: 0.5rem; /* rounded-lg */
@@ -76,7 +76,7 @@
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
         }
 
-        /* Utility class to hide sections (used for full blog post view) */
+        /* Utility class to hide sections */
         .hidden-section {
             display: none;
         }
@@ -98,7 +98,79 @@
         .fa-check-square { color: #22c55e; /* green-500 */ }
         .fa-square { color: #9ca3af; /* gray-400 */ }
 
-        /* Map related CSS REMOVED */
+        /* Basic styling for policy/docs sections */
+        .content-view h2 { /* Target h2 within policy/doc view */
+             /* ** Increased Title Size ** */
+            font-size: 2.25rem; /* text-4xl */
+            line-height: 2.5rem; /* leading-10 */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1.5rem; /* mb-6 */
+            text-align: center;
+        }
+         .content-view h3 { /* Target h3 within policy/doc view */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.75rem; /* mb-3 */
+            border-bottom: 1px solid #e5e7eb; /* border-b border-gray-200 */
+            padding-bottom: 0.5rem; /* pb-2 */
+        }
+        .content-view p, .content-view ul, .content-view pre {
+            margin-bottom: 1rem; /* mb-4 */
+            line-height: 1.6; /* leading-relaxed */
+            color: #4b5563; /* text-gray-700 */
+        }
+         .content-view ul {
+            list-style: disc;
+            padding-left: 1.5rem; /* pl-6 */
+        }
+         .content-view ol {
+            list-style: decimal;
+            padding-left: 1.5rem; /* pl-6 */
+         }
+         .content-view li {
+             margin-bottom: 0.25rem; /* mb-1 */
+         }
+         .content-view strong {
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+        }
+         .content-view code { /* Inline code */
+            background-color: #f3f4f6; /* gray-100 */
+            padding: 0.1em 0.4em;
+            border-radius: 0.25rem; /* rounded-sm */
+            font-size: 0.9em;
+            font-family: monospace;
+         }
+         .content-view pre { /* Code blocks */
+             background-color: #1f2937; /* gray-800 */
+             color: #f9fafb; /* gray-50 */
+             padding: 1rem; /* p-4 */
+             border-radius: 0.375rem; /* rounded-md */
+             overflow-x: auto;
+             font-size: 0.9em;
+         }
+         .content-view pre code {
+             background-color: transparent;
+             padding: 0;
+             color: inherit;
+         }
+         /* Base styles for back link/button */
+         .back-link {
+            display: inline-block;
+            margin-top: 2rem; /* mt-8 */
+         }
+
+         .content-view .disclaimer {
+             font-style: italic;
+             font-size: 0.875rem; /* text-sm */
+             color: #ef4444; /* text-red-500 */
+             margin-top: 1rem;
+             margin-bottom: 1rem;
+             padding: 0.75rem; /* p-3 */
+             background-color: #fee2e2; /* red-100 */
+             border-left: 4px solid #ef4444; /* border-l-4 border-red-500 */
+         }
 
     </style>
 </head>
@@ -114,7 +186,7 @@
                 <a href="#plan-details" class="nav-link text-gray-600 hover:text-blue-600">Our Offering</a>
                 <a href="#features" class="nav-link text-gray-600 hover:text-blue-600">Features</a>
                 <a href="#locations" class="nav-link text-gray-600 hover:text-blue-600">Locations</a>
-                <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="#docs" class="nav-link text-gray-600 hover:text-blue-600">Docs</a> <a href="#blog" class="nav-link text-gray-600 hover:text-blue-600">Blog</a>
                 <a href="#status" class="nav-link text-gray-600 hover:text-blue-600">Status</a>
                 <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer"
                     class="text-gray-600 hover:text-blue-600" title="Join our Discord">
@@ -137,7 +209,7 @@
             <a href="#plan-details" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Our Offering</a>
             <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Features</a>
             <a href="#locations" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Locations</a>
-            <a href="#blog" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Blog</a>
+            <a href="#docs" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Docs</a> <a href="#blog" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Blog</a>
             <a href="#status" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 border-b pb-3 mb-3">Status</a>
              <a href="https://skyvps360.xyz/discord" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
                  <i class="fab fa-discord text-xl mr-2"></i> Discord
@@ -198,7 +270,7 @@
                                 <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p>
                              </div>
                              <div class="plan-footer">
-                                <a href="https://my.skyvps360.xyz/products/storage-kvm-vps/kvmstorage100"
+                                <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
                                     class="block w-full text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
                                     Details & Order</a>
                              </div>
@@ -231,7 +303,7 @@
                                 <p class="text-xs text-gray-600">Swap space acts as backup memory. Chosen swap space will be reserved on your storage disk.</p>
                                 </div>
                              <div class="plan-footer">
-                                <a href="https://my.skyvps360.xyz/products/storage-kvm-vps/kvmstorage200"
+                                <a href="https://my.skyvps360.xyz/products/kvm-storage-datacenters"
                                     class="block w-full text-center bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold">View
                                     Details & Order</a>
                              </div>
@@ -333,8 +405,16 @@
                 </div>
             </section>
 
-            <section id="blog" class="page-section py-16 bg-gray-100 px-6">
+            <section id="docs" class="page-section py-16 bg-gray-100 px-6">
                 <div class="container mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">Documentation</h2>
+                    <div id="docs-list-container" class="max-w-4xl mx-auto">
+                        <p class="text-center text-gray-500">Loading docs...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="page-section py-16 bg-white px-6"> <div class="container mx-auto">
                     <h2 class="text-3xl font-bold text-center mb-12">Latest News & Updates</h2>
                     <div id="blog-posts-container" class="max-w-4xl mx-auto">
                         <p class="text-center text-gray-500">Loading posts...</p>
@@ -342,8 +422,7 @@
                 </div>
             </section>
 
-            <section id="status" class="page-section py-16 bg-white px-6">
-                <div class="container mx-auto">
+            <section id="status" class="page-section py-16 bg-gray-100 px-6"> <div class="container mx-auto">
                     <h2 class="text-3xl font-bold text-center mb-12">System Status</h2>
                     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                         <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-4">
@@ -364,8 +443,56 @@
                 </div>
             </section>
         </div> <section id="full-post-view" class="page-section hidden-section py-16 bg-white px-6">
-            <div class="container mx-auto max-w-3xl">
-                 </div>
+            <div class="container mx-auto max-w-3xl content-view"> </div>
+        </section>
+
+        <section id="full-doc-view" class="page-section hidden-section py-16 bg-white px-6">
+            <div class="container mx-auto max-w-3xl content-view"> </div>
+        </section>
+
+        <section id="privacy-policy" class="page-section hidden-section py-16 bg-white px-6">
+             <div class="container mx-auto max-w-3xl policy-content">
+                <h2>Privacy Policy</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Last Updated: [Date - e.g., April 16, 2025]</p>
+                <p class="disclaimer"><strong>Disclaimer:</strong> ...</p>
+                <h3>1. Introduction</h3> <p>...</p>
+                <h3>2. Information We Collect</h3> <p>...</p> <ul>...</ul>
+                <h3>3. How We Use Your Information</h3> <p>...</p> <ul>...</ul>
+                <h3>4. Disclosure of Your Information</h3> <p>...</p> <ul>...</ul>
+                <h3>5. Security of Your Information</h3> <p>...</p>
+                <h3>6. Data Retention</h3> <p>...</p>
+                <h3>7. Your Rights (Access, Correction, Deletion)</h3> <p>...</p>
+                <h3>8. Cookies and Tracking Technologies</h3> <p>...</p>
+                <h3>9. Policy for Children</h3> <p>...</p>
+                <h3>10. International Transfers</h3> <p>...</p>
+                <h3>11. Changes to This Privacy Policy</h3> <p>...</p>
+                <h3>12. Contact Us</h3> <p>...</p>
+                <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Home</a>
+            </div>
+        </section>
+
+        <section id="terms-of-service" class="page-section hidden-section py-16 bg-white px-6">
+            <div class="container mx-auto max-w-3xl policy-content">
+                <h2>Terms of Service</h2>
+                 <p class="text-center text-sm text-gray-500 mb-6">Last Updated: [Date - e.g., April 16, 2025]</p>
+                 <p class="disclaimer"><strong>Disclaimer:</strong> ...</p>
+                 <h3>1. Acceptance of Terms</h3> <p>...</p>
+                 <h3>2. Service Description</h3> <p>...</p>
+                 <h3>3. Account Registration and Security</h3> <ul>...</ul>
+                 <h3>4. Acceptable Use Policy (AUP)</h3> <p>...</p> <ul>...</ul> <p>...</p>
+                 <h3>5. Payment, Billing, and Renewal</h3> <ul>...</ul>
+                 <h3>6. Term and Termination</h3> <ul>...</ul>
+                 <h3>7. Resource Usage</h3> <p>...</p>
+                 <h3>8. Backups</h3> <p>...</p>
+                 <h3>9. Intellectual Property</h3> <p>...</p>
+                 <h3>10. Disclaimer of Warranties</h3> <p>...</p>
+                 <h3>11. Limitation of Liability</h3> <p>...</p>
+                 <h3>12. Indemnification</h3> <p>...</p>
+                 <h3>13. Governing Law</h3> <p>...</p>
+                 <h3>14. Changes to Terms</h3> <p>...</p>
+                 <h3>15. Contact Information</h3> <p>...</p>
+                 <a href="#" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Home</a>
+            </div>
         </section>
 
     </main>
@@ -373,8 +500,11 @@
     <footer class="bg-gray-800 text-gray-300 py-8 px-6">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 SkyVPS360. All Rights Reserved.</p>
-            <div class="mt-4 space-x-4">
-                </div>
+            <div class="mt-4 space-x-4 text-sm">
+                <a href="#terms-of-service" class="hover:text-white hover:underline">Terms of Service</a>
+                <span class="text-gray-500">|</span>
+                <a href="#privacy-policy" class="hover:text-white hover:underline">Privacy Policy</a>
+            </div>
         </div>
     </footer>
 
@@ -398,7 +528,7 @@
         }
 
         // --- Blog Post Data ---
-        const blogPosts = [ /* ... blog post data ... */
+        const blogPosts = [
              {
                 title: "Welcome to the New SkyVPS360 Frontend!",
                 date: "April 16, 2025",
@@ -408,8 +538,80 @@
             }
         ];
 
-        // --- Blog Post Rendering Functions ---
-        function renderBlogPostsList(posts) { /* ... remains the same ... */
+        // --- Docs Article Data ---
+        const docsArticles = [
+            {
+                title: "Getting Started with Your VPS",
+                slug: "getting-started",
+                content: `
+                    <h3>Welcome to SkyVPS360!</h3>
+                    <p>This guide will help you get started with your new KVM VPS.</p>
+                    <ol>
+                        <li><strong>Check Your Email:</strong> After ordering, you should receive an email with your VPS IP address, root password, and VirtFusion control panel login details.</li>
+                        <li><strong>Log into VirtFusion:</strong> Access the VirtFusion panel using the link and credentials provided in your email. Here you can manage your VPS (boot, shutdown, reboot, reinstall OS, view console).</li>
+                        <li><strong>Connect via SSH:</strong> Use an SSH client (like PuTTY on Windows, or the built-in terminal on macOS/Linux) to connect to your server's IP address using the root username and password.</li>
+                        <li><strong>Secure Your Server:</strong> It's crucial to secure your server immediately. This typically involves:
+                            <ul>
+                                <li>Changing the root password.</li>
+                                <li>Creating a new non-root user with sudo privileges.</li>
+                                <li>Setting up SSH key authentication and potentially disabling password authentication.</li>
+                                <li>Configuring a basic firewall (like UFW).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Update Your System:</strong> Run your distribution's package manager update commands (e.g., <code>sudo apt update && sudo apt upgrade -y</code> for Debian/Ubuntu, or <code>sudo dnf update -y</code> for Fedora/CentOS).</li>
+                    </ol>
+                    <p>Explore other documentation articles for more specific tasks!</p>
+                `
+            },
+            {
+                title: "Connecting via SSH",
+                slug: "ssh-connection",
+                content: `
+                    <h3>Connecting to Your VPS using SSH</h3>
+                    <p>SSH (Secure Shell) is the standard way to securely connect to and manage your Linux VPS.</p>
+                    <h4>Using Terminal (Linux/macOS)</h4>
+                    <p>Open your terminal application and use the following command, replacing <code>your_server_ip</code> with your VPS's IP address:</p>
+                    <pre><code>ssh root@your_server_ip</code></pre>
+                    <p>You will be prompted for the root password provided in your welcome email. Enter it (typing may not be visible for security).</p>
+                    <h4>Using PuTTY (Windows)</h4>
+                    <ol>
+                        <li>Download and install PuTTY from the official website.</li>
+                        <li>Open PuTTY.</li>
+                        <li>In the "Host Name (or IP address)" field, enter your server's IP address.</li>
+                        <li>Ensure the "Port" is set to 22 and "Connection type" is SSH.</li>
+                        <li>Click "Open".</li>
+                        <li>If it's your first time connecting, you might see a security alert about the server's host key. Click "Yes" or "Accept".</li>
+                        <li>A terminal window will appear prompting for login. Enter <code>root</code>.</li>
+                        <li>Enter the root password when prompted.</li>
+                    </ol>
+                    <h4>SSH Keys (Recommended)</h4>
+                    <p>Using SSH keys is more secure than passwords. You generate a key pair (public and private) on your local machine. The public key is added to the <code>~/.ssh/authorized_keys</code> file on your server. Your SSH client then uses the private key to authenticate.</p>
+                    <p>Consult online guides for generating SSH keys specific to your operating system and configuring key-based authentication on your server.</p>
+                `
+            },
+            {
+                title: "Using VirtFusion Panel",
+                slug: "virtfusion-panel",
+                content: `
+                    <h3>Overview of the VirtFusion Control Panel</h3>
+                    <p>VirtFusion is the control panel you use to manage the basic functions of your VPS instance.</p>
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li><strong>Power Controls:</strong> Boot, Shutdown, Reboot your VPS.</li>
+                        <li><strong>Console Access:</strong> Access a virtual console directly through your browser. Useful if SSH is inaccessible.</li>
+                        <li><strong>OS Reinstallation:</strong> Reinstall the operating system on your VPS using available templates. <strong>Warning:</strong> This will erase all data on your VPS.</li>
+                        <li><strong>Usage Graphs:</strong> View basic graphs for CPU, memory, disk I/O, and network traffic usage.</li>
+                        <li><strong>Network Information:</strong> View assigned IP addresses (IPv4 NAT details, IPv6 subnet).</li>
+                        <li><strong>Settings:</strong> Manage settings like boot order or potentially enable/disable features like TUN/TAP (if applicable).</li>
+                    </ul>
+                    <p>Log in using the credentials provided in your welcome email. Familiarize yourself with the interface to effectively manage your server's state.</p>
+                `
+            }
+        ];
+
+
+        // --- Rendering Functions ---
+        function renderBlogPostsList(posts) {
              const container = document.getElementById('blog-posts-container');
             if (!container) return;
             if (!posts || posts.length === 0) {
@@ -418,27 +620,89 @@
             }
             let postsHTML = '';
             posts.forEach(post => {
-                postsHTML += `<article class="blog-post"><h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700"><a href="#blog/${post.slug || '#'}">${post.title}</a></h3><p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p><p class="text-gray-700 mb-4">${post.snippet}</p><a href="#blog/${post.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium">Read More &rarr;</a></article>`;
+                postsHTML += `
+                    <article class="list-item-card">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
+                            <a href="#blog/${post.slug || '#'}" >${post.title}</a>
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">Published on ${post.date}</p>
+                        <p class="text-gray-700 mb-4">${post.snippet}</p>
+                        <a href="#blog/${post.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium">Read More &rarr;</a>
+                    </article>
+                `;
             });
             container.innerHTML = postsHTML;
         }
-        function renderFullPost(post) { /* ... remains the same ... */
+
+        function renderFullPost(post) {
              const container = document.getElementById('full-post-view');
             if (!container) return;
             if (!post) {
                 container.innerHTML = '<p class="text-center text-red-500">Error: Post not found.</p>';
                 return;
             }
-            container.innerHTML = `<article><h1 class="text-3xl font-bold mb-3">${post.title}</h1><p class="text-sm text-gray-500 mb-6">Published on ${post.date}</p><div class="prose max-w-none text-gray-800">${post.content}</div><a href="#" class="inline-block mt-8 text-blue-600 hover:text-blue-700">&larr; Back to Home</a></article>`;
-            const backLink = container.querySelector('a[href="#"]');
+            container.innerHTML = `
+                <article>
+                    <h2>${post.title}</h2>
+                    <p class="text-center text-sm text-gray-500 mb-6">Published on ${post.date}</p>
+                    <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">${post.content}</div>
+                    <a href="#blog" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Blog List</a>
+                </article>
+            `;
+            const backLink = container.querySelector('a.policy-back-link');
             if(backLink) {
                 backLink.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.location.hash = '#hero';
-                    handleRouteChange();
+                    window.location.hash = '#blog';
                 });
             }
         }
+
+         function renderDocsList(docs) {
+             const container = document.getElementById('docs-list-container');
+            if (!container) return;
+            if (!docs || docs.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500">No documentation available.</p>';
+                return;
+            }
+            let docsHTML = '';
+            docs.forEach(doc => {
+                docsHTML += `
+                    <article class="list-item-card">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-700">
+                            <a href="#docs/${doc.slug || '#'}">${doc.title}</a>
+                        </h3>
+                        <a href="#docs/${doc.slug || '#'}" class="text-blue-600 hover:text-blue-700 font-medium">View Doc &rarr;</a>
+                    </article>
+                `;
+            });
+            container.innerHTML = docsHTML;
+        }
+
+        function renderFullDoc(doc) {
+             const container = document.getElementById('full-doc-view');
+            if (!container) return;
+            if (!doc) {
+                container.innerHTML = '<p class="text-center text-red-500">Error: Document not found.</p>';
+                return;
+            }
+            // ** Added Card Styling Wrapper **
+            container.innerHTML = `
+                <article>
+                    <h2>${doc.title}</h2>
+                    <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">${doc.content}</div>
+                    <a href="#docs" class="back-link policy-back-link inline-block mt-8 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 font-medium">&larr; Back to Docs List</a>
+                </article>
+            `;
+            const backLink = container.querySelector('a.policy-back-link');
+            if(backLink) {
+                backLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.hash = '#docs';
+                });
+            }
+        }
+
 
         // --- Map Initialization REMOVED ---
 
@@ -452,22 +716,30 @@
             });
         }
 
-        // --- Router (Scroll Navigation) ---
+        // --- Router (Scroll Navigation & Policy/Doc/Blog Views) ---
         const mainPageSectionsDiv = document.getElementById('main-page-sections');
         const fullPostViewSection = document.getElementById('full-post-view');
+        const fullDocViewSection = document.getElementById('full-doc-view'); // Added Doc View
+        const privacyPolicySection = document.getElementById('privacy-policy');
+        const termsOfServiceSection = document.getElementById('terms-of-service');
 
         function handleRouteChange() {
             const hash = window.location.hash || '#hero';
             const blogPostMatch = hash.match(/^#blog\/(.+)/);
+            const docArticleMatch = hash.match(/^#docs\/(.+)/); // Added Docs Match
 
-             // Close mobile menu on route change
              if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                  mobileMenu.classList.add('hidden');
              }
 
+            fullPostViewSection?.classList.add('hidden-section');
+            fullDocViewSection?.classList.add('hidden-section'); // Hide doc view
+            privacyPolicySection?.classList.add('hidden-section');
+            termsOfServiceSection?.classList.add('hidden-section');
+            mainPageSectionsDiv?.classList.remove('hidden-section');
+
 
             if (blogPostMatch) {
-                // --- Show Single Blog Post ---
                 const slug = blogPostMatch[1];
                 const post = blogPosts.find(p => p.slug === slug);
                 mainPageSectionsDiv?.classList.add('hidden-section');
@@ -475,11 +747,32 @@
                 renderFullPost(post);
                 window.scrollTo(0, 0);
 
+            } else if (docArticleMatch) {
+                 const slug = docArticleMatch[1];
+                 const doc = docsArticles.find(d => d.slug === slug);
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 fullDocViewSection?.classList.remove('hidden-section');
+                 renderFullDoc(doc);
+                 window.scrollTo(0, 0);
+
+            } else if (hash === '#privacy-policy') {
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 privacyPolicySection?.classList.remove('hidden-section');
+                 window.scrollTo(0, 0);
+
+            } else if (hash === '#terms-of-service') {
+                 mainPageSectionsDiv?.classList.add('hidden-section');
+                 termsOfServiceSection?.classList.remove('hidden-section');
+                 window.scrollTo(0, 0);
+
             } else {
-                // --- Show Main Page Sections & Handle Scrolling ---
-                mainPageSectionsDiv?.classList.remove('hidden-section');
-                fullPostViewSection?.classList.add('hidden-section');
-                renderBlogPostsList(blogPosts); // Render list if not already visible
+                 privacyPolicySection?.classList.add('hidden-section');
+                 termsOfServiceSection?.classList.add('hidden-section');
+                 fullPostViewSection?.classList.add('hidden-section');
+                 fullDocViewSection?.classList.add('hidden-section');
+
+                renderBlogPostsList(blogPosts);
+                renderDocsList(docsArticles); // Render docs list
 
                 if (hash && hash !== '#hero' && hash !== '#') {
                     const targetSectionId = hash.substring(1);
@@ -505,12 +798,27 @@
             }
         }
 
+        // Add event listeners for policy/doc back links
+        document.querySelectorAll('.policy-back-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (document.getElementById('full-post-view')?.contains(link)) {
+                     window.location.hash = '#blog';
+                } else if (document.getElementById('full-doc-view')?.contains(link)) {
+                     window.location.hash = '#docs';
+                } else {
+                     window.location.hash = '#hero';
+                }
+            });
+        });
+
 
         // --- Run functions when DOM is loaded ---
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus('https://vdc.skyvps360.xyz', 'status-vdc');
             checkStatus('https://my.skyvps360.xyz', 'status-billing');
             renderBlogPostsList(blogPosts); // Render blog list
+            renderDocsList(docsArticles); // Render docs list
             handleRouteChange(); // Handle initial route
             window.addEventListener('hashchange', handleRouteChange); // Listen for hash changes
         });
