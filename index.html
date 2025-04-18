@@ -926,7 +926,8 @@ sudo ufw default allow outgoing</code></pre>
         - YOUR_CHOSEN_IPV6::ADDRESS/80 # e.g., 2001:db8:1234:abcd::10/80
       gateway6: YOUR_IPV6_GATEWAY_ADDRESS
       nameservers:
-        addresses: [2001:4860:4860::8888, 2001:4860:4860::8844] # Example: Google Public DNS</code></pre>
+      # Example: Google Public DNS
+        addresses: [2001:4860:4860::8888, 2001:4860:4860::8844] </code></pre>
                                     Then run <code>sudo netplan apply</code>. Consult your OS documentation for the correct syntax.
                                 </li>
                             </ul>
